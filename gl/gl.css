@@ -1,0 +1,87 @@
+:root {
+      
+}
+
+.tema4-2 {/* Синий тёмный */
+  --Ct: #ccc;/* color */
+  --bg: #012;/* background */
+  --B-C: #59f;/* button */
+}
+.tema8 {
+  
+}
+.tema9 {/* чёрная (tema8 светлая в https://zam.usite.pro/css/z.css) */
+  --Ct: #fff;/* color */
+  --bg: #000;/* Задний фон background */
+  --B-C: #59f;/* button */
+}
+
+html {
+  font-size: 12pt
+}
+body {
+  margin:0;
+  padding: 0 0 1.7em 0;/* Отступ с низу для кнопок */
+  color:var(--Ct);
+  background: var(--bg);
+  transition: background .7s, color 1s
+}
+main {
+  margin:1.7em 7px 7px 7px;
+}
+a {
+  color: var(--B-C);
+  text-decoration: none;
+}
+
+/* ✦ Меню .M ✦ *//* #region */
+    /* ✦✦ ! ✦✦ *//* #region */
+#M {z-index: 8;
+  position: fixed;
+  bottom:0;
+  right:0;
+  left:0;
+  height:1.7rem;
+  background: var(--bg);
+}
+
+#M > div {
+  display:flex;
+  justify-content: space-between;
+  padding-top: 2px;
+}
+
+#M>div > :last-child {/* Все кнопки */
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#M :is(button, select) {
+  margin: 0 2px;
+  padding: 1px 3px;
+  height: 1.4em;/* Уравнивает button, select */
+  font-size: 1em;/* Уравнивает кнопки */
+  border: 1px solid #999;
+  background: #fff;
+  color: #000;
+}
+    /* ✦✦ ! ✦✦ *//* #endregion */
+
+    /* ✦✦ Кнопки ✦✦ *//* #region */
+.bodyS {/* Добавим полосу прокрутки */
+  overflow: scroll;
+  padding-bottom: 1700px;
+}
+
+[x] {/* Закрыть */
+  color:red!important;
+}
+    /* ✦✦ Кнопки ✦✦ *//* #endregion */
+/* ✦ Меню .M ✦ *//* #endregion */
+
+[bclick] {/* <button в стиле <а */
+  border:0;
+  color:var(--B-C);
+  background: #0000;
+}
+

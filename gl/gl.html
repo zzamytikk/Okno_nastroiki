@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html><div id="hLoad" style="z-index:999;position:fixed;top:0;right:0;width:100%;height:2px;background:red;transition:1s;"></div><!-- Загрузка сайта -->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Окно ✓ Плавное поивление `Инфо-Меню`</title>
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Comfortaa|Istok+Web:400,700&amp;subset=cyrillic" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+  
+  <!-- ucoz -->
+  <link href="https://zam.usite.pro/css/root.css" rel="stylesheet">
+  <link href="https://zam.usite.pro/css/z.css" rel="stylesheet">
+  <script src="https://zam.usite.pro/js/z.js" defer></script>
+  
+  <!-- Временные/Отдельные: -->
+  <!-- Открыть/Закрыть элемент -->
+  <!--
+  <link href="https://zam.usite.pro/db/all/GitAll/zHid/ok.css" rel="stylesheet">
+  <script src="https://zam.usite.pro/db/all/GitAll/zHid/ok.js" defer></script>
+  -->
+  
+  <!-- Для шаблона www (Для всех шаблонов): -->
+  <link !href="https://zam.usite.pro/db/all/Git/gl/gl.css" rel="stylesheet">
+  <script !src="https://zam.usite.pro/db/all/Git/gl/gl.js" defer></script>
+  <!-- Для шаблона localhost: -->
+  <link href="/gl/gl.css" rel="stylesheet">
+  <script src="/gl/gl.js" defer></script>
+
+  <!-- Измени путь на свой проект: -->
+  <link href="/.../1-0-0/ok.css" rel="stylesheet">
+  <script src="/.../1-0-0/ok.js" defer></script>
+</head>
+<body><div id="M"><div></div></div>
+  <header><nav></nav></header>
+  <main>
+    <h4 class="hr-n1 hr-L all-c0"><b>Презентация:</b></h4>
+    <!-- ••• Презентация НАЧАЛО: ••• -->
+    
+    <!-- ••• Презентация КОНЕЦ! ••• -->
+  </main>
+  <footer></footer>
+
+  <script>
+    let e = document.querySelector('#hLoad');
+    setTimeout(() => {//Загрузка сайта
+      e.style.width = '70%';
+    },1);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gl.$();//Запуск инструментов (bg,resize,menu...)
+      z.z.Start.$();//Запуск: Скрыть/Показать (hidden), Подсветка кодов, 
+      
+      setTimeout(() => {//Загрузка сайта
+        e.style.width=0;
+        e.style.background='#0b0';
+      },2);
+    });
+  </script>
+</body>
+</html>
+<!--
+    <fieldset class="all-c1">
+        <legend>Панель управления</legend>
+        текст
+    </fieldset>
+    &nbsp;	Неразрывный пробел
+< 	&lt;	  Знак "меньше чем" (начало тега)
+>	  &gt;	  Знак "больше чем" (конец тега)
+"	  &quot;	Двойная кавычка
+' 	&apos;	Апостроф (одинарная кавычка)
+•   &bull;
+-->
+<!-- +HTML:
+    100% для мах 1 блока в ряд:
+    <div class="flex-w">
+        <div>1</div>
+    </div>
+------------------------
+    50% для мах 2 блоков в ряд:
+    <div class="flex-w" style="---flexW:50%">
+        <div>1</div>
+        <div>2</div>
+    </div>
+-----------------------
+    33.3% для мах 3 блоков в ряд:
+    <div class="flex-w" style="---flexW:33.3%">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+-----------------------
+    25% для мах 4 блоков в ряд:
+    <div class="flex-w" style="---flexW:25%">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+
+    =========================
+
+    <style> Разтяним на всё
+        .flex-w {
+            height: 100%;
+        }
+        .flex-w > * {
+            padding: 3px;
+        }
+        .flex-w button {
+            width: 100%;
+            height: calc(100% - 1.9rem);
+            font-size: var(---med-B-20-22-26);
+        }
+    </style>
+-->
