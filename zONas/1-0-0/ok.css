@@ -1,0 +1,196 @@
+/*  ✪ https://zam.usite.pro/publ/...
+    ✫ Версия 1.0.0
+    © Copyright Плюшки для сайтов 2024
+*/
+
+/* ✦ --all-.. .all-c.. Цвета ✦ *//* #region */
+/*  • --all-C            = color title, border, backgraund, box-shadow inset
+    • --all-Ct           = текст послабей для текста
+
+    • --all-bg-93        = backgraund (Прозрацный)
+
+    • --all-br:          = border
+
+    • --all-b-sh         = box-shadow
+    • --all-t-sh         = text-shadow
+*/
+[class*="all-c0"] {/*0~> */
+    --all-C: #f44;
+}
+[class*="all-c1"] {/*1~> */
+    --all-C: #0b0;
+}
+[class*="all-c2"] {/*2~> */
+    --all-C: #f90;
+}
+[class*="all-c3"] {/*3~> */
+    --all-C: #dd0;
+}
+[class*="all-c4"] {/*4~> */
+    --all-C: #08f;
+}
+[class*="all-c5"] {/*5~> */
+    --all-C: #999;
+}
+[class*="all-c6"] {/*6~> */
+    --all-C: #f0f;
+}
+[class*="all-c7"] {/*7~> */
+    --all-C: #0bb;
+}
+[class*="all-c8"] {/*8~> Белый */
+  --all-C: #333;
+}
+.temaT .all-c8[class*="zONas-"] {/* 9 Чёрный. Для белого фона */
+  --all-C: #ccc;
+}
+/* ✦ --all- .all-c.. Цвета ✦ *//* #endregion */
+
+.temaT [class*="zONas-"] {
+  --bg: #012;  /* background Фон сайта */
+  --Ct: #ccc;  /* текст */
+}
+
+[class*="zONas-"],
+[class*="zONas-"] *, [class*="zONas-"] *::after {/* Помогает интеграции */
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  box-sizing: border-box;
+  line-height: 1.1;
+  font-size: inherit;/* уравнивает все элементы */
+}
+
+/* ✦ Всплывающее окно (Настройки/Разное) .zONas-.. ✦ *//* #region */
+    /* ✦✦ ! ✦✦ *//* #region */
+[class*="zONas-"] {
+  display: inline-block;
+}
+    
+[class*="zONas-"] > div {z-index: 12;
+    --nas-br: var(--all-C, #999);/* border + стрелка */
+    --nas-bg: var(--bg, #fff);/* background */
+    --nas-C: var(--Ct, #000);/* color */
+    position: absolute;
+    width: max-content;/* По размеру содержимому */
+    min-width: 47px;
+    max-width: 400px;/* Максимальная ширина подсказки */
+    text-align: left;
+    color: var(--nas-C);
+    background: var(--nas-bg);
+    border: 1px solid var(--nas-br);
+    box-shadow: inset 0 0 2px #000,0 0 9px #000;
+    /* Открыть/Закрыть */
+    visibility: hidden;/* Убераем видемость для outline при нажатии TAB */
+    opacity: 0;
+    transform: translate(0, -9px) perspective(1000px) rotate3d(1, 0, 0, 90deg);/* Закрыто */
+    transform-origin: top;/* Верх фиксируем */
+    transition: .7s;
+}
+[class*="zONas-T"] > div {
+  transform: translate(0, 9px) perspective(1000px) rotate3d(1, 0, 0, 90deg);
+  transform-origin: bottom;
+}
+
+[class*="zONas-"] > div > * {
+  padding: 4px;
+  max-height: 200px;
+  overflow: auto;
+}
+    /* ✦✦ ! ✦✦ *//* #endregion */
+
+    /* ✦✦ Сторона поивления + Рамка + стрелка ✦✦ *//* #region */
+        /* ✦✦✦ ! ✦✦✦ *//* #region */
+[class*="zONas-"] > div {
+  
+}
+[class*="zONas-"] > div::after {
+  content: '';
+  position: absolute;
+  pointer-events: none; /* Убераем видемость для курсора */
+  border: 9px solid #0000;
+}
+        /* ✦✦✦ ! ✦✦✦ *//* #endregion */
+
+        /* ✦✦✦ Верх(Лево/Право) .zONas-BL ✦✦✦ *//* #region */
+            /* ✦✦✦✦ ! ✦✦✦✦ *//* #region */
+[class*="zONas-T"] > div {
+  bottom: calc(100% + 12px);
+  border-top: 3px solid var(--nas-br);
+}
+[class*="zONas-T"] > div::after {
+  right: 9px;
+  top: 100%;
+  border-top-color: var(--nas-br);
+}
+            /* ✦✦✦✦ ! ✦✦✦✦ *//* #endregion */
+        
+.zONas-TL > div {/* Сторона низ с права на лево */
+  right: -3px;
+  border-radius: 0 0 2px 7px;/* Скругления уголков рамки */
+}
+
+.zONas-TR > div {
+  left: -3px;
+  border-radius: 0  0 7px 2px;
+}
+.zONas-TR > div::after {
+  left: 9px;
+  right:unset;
+}
+        /* ✦✦✦ Верх(Лево/Право) .zONas-BL ✦✦✦ *//* #endregion */
+
+        /* ✦✦✦ Низ(Лево/Право) .zONas-BL ✦✦✦ *//* #region */
+            /* ✦✦✦✦ ! ✦✦✦✦ *//* #region */
+[class*="zONas-B"] > div {
+  top: calc(100% + 12px);
+  border-bottom: 3px solid var(--nas-br);
+}
+[class*="zONas-B"] > div::after {
+  right: 9px;
+  bottom: 100%;
+  border-bottom-color: var(--nas-br);
+}
+            /* ✦✦✦✦ ! ✦✦✦✦ *//* #endregion */
+        
+.zONas-BL > div {/* Сторона низ с права на лево */
+  right: -3px;
+  border-radius: 7px 2px 0 0;/* Скругления уголков рамки */
+}
+
+.zONas-BR > div {
+  left: -3px;
+  border-radius: 0 7px 2px 0;
+}
+.zONas-BR > div::after {
+  left: 9px;
+  right:unset;
+}
+        /* ✦✦✦ Низ(Лево/Право) .zONas-BL ✦✦✦ *//* #endregion */
+
+    /* ✦✦ Сторона поивления + Рамка + стрелка ✦✦ *//* #endregion */
+
+    /* ✦✦ Открываем ✦✦ *//* #region */
+.zONasO > div {/* Открываем */
+  visibility: visible;/* Вернём видемость для outline при нажатии TAB */
+  opacity: 1;
+  transform: translate(0, 0) perspective(1000px) rotate3d(1, 0, 0, 0)
+}
+    /* ✦✦ Открываем ✦✦ *//* #endregion */
+/* ✦ Всплывающее окно (Настройки/Разное) .zONas-.. ✦ *//* #endregion */
+
+
+
+
+[class*="nas-"] table {
+    width: 100%;
+}
+[class*="nas-"] caption {
+    color: #0b0;
+}
+[class*="nas-"] td {
+    text-align: left;
+}
