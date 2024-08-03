@@ -21,11 +21,11 @@
   -->
   
   <!-- Для шаблона www (Для всех шаблонов): -->
-  <link !href="https://zam.usite.pro/db/all/Git/gl/gl.css" rel="stylesheet">
-  <script !src="https://zam.usite.pro/db/all/Git/gl/gl.js" defer></script>
+  <link href="https://zam.usite.pro/db/all/Git/gl/gl.css" rel="stylesheet">
+  <script src="https://zam.usite.pro/db/all/Git/gl/gl.js" defer></script>
   <!-- Для шаблона localhost: -->
-  <link href="/gl/gl.css" rel="stylesheet">
-  <script src="/gl/gl.js" defer></script>
+  <link !href="/gl/gl.css" rel="stylesheet">
+  <script !src="/gl/gl.js" defer></script>
 
   <!-- Измени путь на свой проект: -->
   <link href="/zONas/1-0-0/ok.css" rel="stylesheet">
@@ -36,6 +36,9 @@
   <main>
     <h4 class="hr-n1 hr-L all-c0"><b>Презентация:</b></h4>
     <!-- ••• Презентация НАЧАЛО: ••• -->
+    <link href="/db/publ/zONas/1-0-0/m.css" rel="stylesheet">
+    <script src="/db/publ/zONas/1-0-0/m.js" defer></script>
+    
     <div class="ram-V0 ram-V2 gI-inf all-c1"><div>
       <b>Всплывающее окно (Настройки/Разное)</b> позволяет быстро и удобно настроить определенные параметры.
       Оно обычно появляется на экране, когда пользователь нажимает на определенную кнопку или выполняет определенные действия.
@@ -59,32 +62,32 @@
       </style>
       <div id="primerzON" style="display: flex; justify-content: center;">
         <div>
-          <div class="zONas-TL"><button>Верх в лево</button>
+          <div class="zONas-TL"><button but>Верх в лево</button>
             <div><div>
               zONas-TL <br>
-              Смена дизайна: <button>button</button>
+              Смена дизайна: <button but>button</button>
             </div></div>
           </div>
         </div>
         <div>
-          <div class="zONas-TR"><button>Верх в право</button>
+          <div class="zONas-TR"><button but>Верх в право</button>
             <div><div>zONas-TR <br>
-             Смена дизайна: <button>button</button></div></div>
+             Смена дизайна: <button but>button</button></div></div>
           </div>
         </div>
       </div>
       
       <div id="primerzON" style="display: flex; justify-content: center;">
         <div>
-          <div class="zONas-BL"><button>Низ в лево</button>
+          <div class="zONas-BL"><button but>Низ в лево</button>
             <div><div>zONas-BL <br>
-             Смена дизайна: <button>button</button></div></div>
+             Смена дизайна: <button but>button</button></div></div>
           </div>
         </div>
         <div>
-          <div class="zONas-BR"><button>Низ в право</button>
+          <div class="zONas-BR"><button but>Низ в право</button>
             <div><div>zONas-BR <br>
-             Смена дизайна: <button>button</button></div></div>
+             Смена дизайна: <button but>button</button></div></div>
           </div>
         </div>
       </div>
@@ -144,6 +147,39 @@
       </ul>
     </div></div>
     
+    <h4 class="hr-n1 hr-L" style="--hr-Ct: var(--Ct)"><b>Подключение к сайту:</b></h4>
+    <pre class="ram-n0 all-c5" data-ram-zag="HTML" id="cod"><code class="v-BG0">
+    &lt;!-- Добавить в &lt;head>..&lt;/head>: -->
+    &lt;script src="https://code.jquery.com/jquery-3.7.1.min.js" defer>&lt;/script>&lt;!-- Библиотека jQuery -->
+    &lt;link href="https://zam.usite.pro/db/publ/zONas/1-0-0/m.css" rel="stylesheet">&lt;!-- Вид `Меню` -->
+    &lt;script src="https://zam.usite.pro/db/publ/zONas/1-0-0/m.js" defer>&lt;/script>&lt;!-- Мозг `Меню` -->
+    </code></pre>
+
+    <b style="color:red">►</b> Исходники(css, js): <a href="https://github.com/zzamytikk/Okno_nastroiki/tree/main/zONas/1-0-0" target="_blank">github</a> <i style="opacity:.4">(m. - Сокращённый вариант, ok. - Подробный)</i>
+    
+    <style>
+      .ramPriStor > div {min-width: 180px}
+    </style>
+    <p>Для выбора <u class="u-n0 all-c1">стороны появления</u> подсказки добавим в атрибут <span class="cod-scb">class</span>:</p>
+    <div class="ramPriStor ram-n1-1 ram-V1 all-c1"><!-- ✂ Стороны поивления -->
+      <div>
+        <i>Верх в лево</i>
+        <b>class</b><s>zONas-TL</s>
+      </div>
+      <div>
+        <i>Верх в право</i>
+        <b>class</b><s>zONas-TR</s>
+      </div>
+      <div>
+        <i>Низ в лево</i>
+        <b>class</b><s>zONas-BL</s>
+      </div>
+      <div>
+        <i>Низ в право</i>
+        <b>class</b><s>zONas-BR</s>
+      </div>
+    </div>
+
     <p>Для выбора <u class="u-n0 all-c1">расцветки</u> добавим в атрибут <span class="cod-scb">class</span>:</p>
     <div class="ram-n1-1 ram-V1 all-c1"><!-- ✂ Цвета -->
       <div>
@@ -179,12 +215,33 @@
         <b>class</b><s>inf-c7</s>
       </div>
       <div>
-        <i>Белый</i>
+        <i>Белый/Чёрный</i>
         <b>class</b><s>inf-c8</s>
       </div>
     </div>
+    <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
+    <div class="zONas-TL all-c4"><button>button</button>
+    &nbsp; <div><div>
+    &nbsp; &nbsp; Текст..
+    &nbsp; </div></div>
+    </div>
+    </code></pre>
     
+    <h4 class="hr-n1 hr-L" style="--hr-Ct: var(--Ct)"><b>Запускаем:</b></h4>
+    <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
+    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+    &lt;script>
+    &nbsp; document.addEventListener('DOMContentLoaded', () => {
+    &nbsp; &nbsp; zONas.$();//★ Всплывающее окно (Настройки/Разное) (Запускаем)
+    &nbsp; });
+    &lt;/script>
+    </code></pre>
     
+    <h4 class="hr-n1 hr-L" style="--hr-Ct: var(--Ct)"><b>Для тёмного сайта:</b></h4>
+    <pre class="ram-n0 all-c5" data-ram-zag="HTML" id="cod"><code class="v-BG0">
+    &lt;!-- Необходимо добавить в body class="temaT" -->
+    &lt;body class="temaT">
+    </code></pre>
     <!-- ••• Презентация КОНЕЦ! ••• -->
   </main>
   <footer></footer>

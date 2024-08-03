@@ -14,17 +14,27 @@ var zONas = {//Всплывающее окно (Настройки/Разное)
     });
   },
   C: b => {//Обработка click (b = button)
-    let R, d = b.parent('div');
+    let R, d = b.parent('div'),
+      N=b.next('div');
   
     if(d.hasClass('zONasO')){//Окно открыто (Закрываем)
       d.removeClass('zONasO')
     } else {//Открываем
+      setTimeout(() => {
+        $(document).on('click.zONas', e => {//• Клик вне элемента  $()
+           //если клик был не по нашему блоку && и не по его дочерним элементам
+            if (!N.is(e.target) && !N.has(e.target)[0]) {//Клик вне элемента
+              $(document).off('.zONas');//† Удалим click
+              d.removeClass('zONasO');//† Закрываем
+            }
+        });
+      }, 1);//Убераем срабатывание click при открытии
+    
       R = /zONas-[A-Z]/g.exec(d.attr('class'))[0].split('-')[1];//Расположение (T = Верх/B = Низ)
       
-      zONas.w(d, b.next('div'), R);//сменим направление
-      d.addClass('zONasO')
+      zONas.w(d, N, R);//сменим направление
+      d.addClass('zONasO');
     }
-    //b.parent('div').toggleClass('zONasO'); //Есть клас удалим или добавим когда нету класа
   },
   //d = parent('div'), n = next('div'), R = B(Верх) || T(Низ)
   w: (d, n, R) => {//Когда не помещяется на экране(горизонтально), сменим направление
