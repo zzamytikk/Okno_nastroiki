@@ -1,4 +1,4 @@
-/*  ✪ https://zam.usite.pro/publ/...
+/*  ✪ https://zam.usite.pro/publ/1-1-0-5
     ✫ Версия 1.0.0
     © Copyright Плюшки для сайтов 2024
 */
