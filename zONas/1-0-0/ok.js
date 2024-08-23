@@ -7,7 +7,7 @@ var zONas = {//Всплывающее окно (Настройки/Разное)
   $: () => { //Вешаем click
     $('[class*="zONas-"]').find('>button:eq(0)').each((i, e) => {
       if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа (Ключь не совпал! повесим обработчик)
-        $(e).on('click.zONas', e => {zONas.C($(e.target))});
+        $(e).on('click.zONas', e => {zONas.C($(e.currentTarget))});
       } else {
         console.debug('Была попытка повторного запуска скрипта zONas.$();');
       }
