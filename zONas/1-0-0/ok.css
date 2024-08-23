@@ -70,7 +70,7 @@
   display: inline-block;
 }
     
-[class*="zONas-"] > div {z-index: 12;
+[class*="zONas-"] > div:last-child {z-index: 12;
     --nas-br: var(--all-C, #999);/* border + стрелка */
     --nas-bg: var(--bg, #fff);/* background */
     --nas-C: var(--Ct, #000);/* color */
@@ -90,12 +90,12 @@
     transform-origin: top;/* Верх фиксируем */
     transition: .7s;
 }
-[class*="zONas-T"] > div {
+[class*="zONas-T"] > div:last-child {
   transform: translate(0, 9px) perspective(1000px) rotate3d(1, 0, 0, 90deg);
   transform-origin: bottom;
 }
 
-[class*="zONas-"] > div > * {
+[class*="zONas-"] > div:last-child > * {
   padding: 4px;
   max-height: 200px;
   overflow: auto;
@@ -104,10 +104,7 @@
 
     /* ✦✦ Сторона поивления + Рамка + стрелка ✦✦ *//* #region */
         /* ✦✦✦ ! ✦✦✦ *//* #region */
-[class*="zONas-"] > div {
-  
-}
-[class*="zONas-"] > div::after {
+[class*="zONas-"] > div:last-child::after {
   content: '';
   position: absolute;
   pointer-events: none; /* Убераем видемость для курсора */
@@ -117,27 +114,27 @@
 
         /* ✦✦✦ Верх(Лево/Право) .zONas-BL ✦✦✦ *//* #region */
             /* ✦✦✦✦ ! ✦✦✦✦ *//* #region */
-[class*="zONas-T"] > div {
+[class*="zONas-T"] > div:last-child {
   bottom: calc(100% + 12px);
   border-top: 3px solid var(--nas-br);
 }
-[class*="zONas-T"] > div::after {
+[class*="zONas-T"] > div:last-child::after {
   right: 9px;
   top: 100%;
   border-top-color: var(--nas-br);
 }
             /* ✦✦✦✦ ! ✦✦✦✦ *//* #endregion */
         
-.zONas-TL > div {/* Сторона низ с права на лево */
+.zONas-TL > div:last-child {/* Сторона низ с права на лево */
   right: -3px;
   border-radius: 0 0 2px 7px;/* Скругления уголков рамки */
 }
 
-.zONas-TR > div {
+.zONas-TR > div:last-child {
   left: -3px;
   border-radius: 0  0 7px 2px;
 }
-.zONas-TR > div::after {
+.zONas-TR > div:last-child::after {
   left: 9px;
   right:unset;
 }
@@ -145,27 +142,27 @@
 
         /* ✦✦✦ Низ(Лево/Право) .zONas-BL ✦✦✦ *//* #region */
             /* ✦✦✦✦ ! ✦✦✦✦ *//* #region */
-[class*="zONas-B"] > div {
+[class*="zONas-B"] > div:last-child {
   top: calc(100% + 12px);
   border-bottom: 3px solid var(--nas-br);
 }
-[class*="zONas-B"] > div::after {
+[class*="zONas-B"] > div:last-child::after {
   right: 9px;
   bottom: 100%;
   border-bottom-color: var(--nas-br);
 }
             /* ✦✦✦✦ ! ✦✦✦✦ *//* #endregion */
         
-.zONas-BL > div {/* Сторона низ с права на лево */
+.zONas-BL > div:last-child {/* Сторона низ с права на лево */
   right: -3px;
   border-radius: 7px 2px 0 0;/* Скругления уголков рамки */
 }
 
-.zONas-BR > div {
+.zONas-BR > div:last-child {
   left: -3px;
   border-radius: 0 7px 2px 0;
 }
-.zONas-BR > div::after {
+.zONas-BR > div:last-child::after {
   left: 9px;
   right:unset;
 }
@@ -174,7 +171,7 @@
     /* ✦✦ Сторона поивления + Рамка + стрелка ✦✦ *//* #endregion */
 
     /* ✦✦ Открываем ✦✦ *//* #region */
-.zONasO > div {/* Открываем */
+.zONasO > div:last-child {/* Открываем */
   visibility: visible;/* Вернём видемость для outline при нажатии TAB */
   opacity: 1;
   transform: translate(0, 0) perspective(1000px) rotate3d(1, 0, 0, 0)
