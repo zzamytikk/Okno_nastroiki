@@ -5,7 +5,7 @@
 var zONas = {//Всплывающее окно (Настройки/Разное)
   //zONas.$();//★ Всплывающее окно (Настройки/Разное) (Запускаем)
   $: () => { //Вешаем click
-    $('[class*="zONas-"]').find('>button:eq(0)').each((i, e) => {
+    $('[class*="zONas-"]').find('>button:eq(0),:eq(0) button').each((i, e) => {
       if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа (Ключь не совпал! повесим обработчик)
         $(e).on('click.zONas', e => {zONas.C($(e.currentTarget))});
       } else {
@@ -14,9 +14,9 @@ var zONas = {//Всплывающее окно (Настройки/Разное)
     });
   },
   C: b => {//Обработка click (b = button)
-    let R, d = b.parent('div'),
-      N=b.next('div');
-  
+    let R, d = b.closest('[class*="zONas-"]'),
+      N=d.find('>div').eq(-1);
+    
     if(d.hasClass('zONasO')){//Окно открыто (Закрываем)
       d.removeClass('zONasO')
     } else {//Открываем
