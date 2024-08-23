@@ -181,16 +181,3 @@
 }
     /* ✦✦ Открываем ✦✦ *//* #endregion */
 /* ✦ Всплывающее окно (Настройки/Разное) .zONas-.. ✦ *//* #endregion */
-
-
-
-
-[class*="nas-"] table {
-    width: 100%;
-}
-[class*="nas-"] caption {
-    color: #0b0;
-}
-[class*="nas-"] td {
-    text-align: left;
-}
