@@ -53,8 +53,8 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
              //если клик был не по нашему блоку && и не по его дочерним элементам
               if (!N.is(e.target) && !N.has(e.target)[0]) {//Клик вне элемента
                 $(document).off('.zONas');//† Удалим click
-                //d.removeClass('zONasO zONasOm');//† Закрываем
-                //N.removeAttr('style');
+                d.removeClass('zONasO zONasOm');//† Закрываем
+                N.removeAttr('style');
               }
           });
         }, 1);//Убераем срабатывание click при открытии
@@ -72,25 +72,32 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   },
   //d = Вокруг кнопки`zONas-[A-Z]`, n = Содержание окна
   w: (d, n) => {//Когда не помещяется на экране`горизонтально`, сменим направление
-    let B, O = 5,//Отступ от стенок
-      w = $(window).innerWidth(),//Размер браузер окна
-      h = $(window).innerHeight(),
+    let B, O = 12,//Отступ от стенок
+      b = $(window),
+      w = b.innerWidth(),//Размер браузер окна
+      h = b.innerHeight(),
+      sL = Math.round(b.scrollLeft()),//Отступ прокрутки
+      sT = Math.round(b.scrollTop()),
       o = n.offset(),//Координаты left|top относительно окна + прокрутка
-      W = n.outerWidth() + O,//Размер всплыв окна + отступ
-      H = n.outerHeight() + O,
+      //Ls = Math.round(sL + o.left),//Прокрутка + До окна
+      //Ts = Math.round(sT + o.top),
+      W = Math.round(n.outerWidth() + O),//Размер всплыв окна + отступ
+      H = Math.round(n.outerHeight() + O),
      
       Lw = Math.round(o.left + W),//до окна + окно = горизонт
       Th = Math.round(o.top + H),
-      //       с лева || с права <= (Вышло за пределы)
-      Lx = o.left < 0 || Lw > w,//Окно не помещяется горизонт
-      Tx = o.top < 0 || Th > h;//вертикаль
+      //  с лева || с права <= (Вышло за пределы)
+      Lx = o.left < O || Lw > w,//Окно не помещяется горизонт
+      Tx = o.top < O || Th > h;//вертикаль
     
-    console.debug('w: ' + w + ', h: ' + h+' <= Размер браузер окна');
-    console.debug('W: ' + W + ', H: ' + H+' <= Размер окна');
-    console.debug('left: ' + Math.round(o.left) + ', top: ' + Math.round(o.top) + ' <= Координаты до окна');
+    console.debug('w: ' + w + ', h: ' + h+' <= Браузер окно');
+    console.debug('W: '+W+', H: '+H+' <= Размер окна');
+    console.debug('sL: ' + sL + ', sT: ' + sT+' <= scroll Прокрутка');
+    console.debug('o.left: ' + Math.round(o.left)+', o.top: ' + Math.round(o.top)+' <= Координаты до окна');
+    //console.debug('Ls: ' + Ls + ', Ts: ' + Ts +' <= Прокрутка + До окна');
     console.debug(
-      'Lx: o.left['+Math.round(o.left)+'] < 0 || Lw['+Lw+'] > ['+w+']w (' + (Lx ? 'Не ' : '') + 'помещается left) <= До окна + окно\n' +
-      'Tx: o.top['+Math.round(o.top)+'] < 0 || Th['+Th+'] > ['+h+']h (' + (Tx ? 'Не ' : '') + 'помещается top)'
+      'Lx: left['+Math.round(o.left)+'] < ['+O+']O || Lw['+Lw+'] > ['+w+']w (' + (Lx ? 'Не ' : '') + 'помещается left) <= До окна + окно\n' +
+      'Tx: top['+Math.round(o.top)+'] < ['+O+']O || Th['+Th+'] > ['+h+']h (' + (Tx ? 'Не ' : '') + 'помещается top)'
     );
     
     if (Lx || Tx) {//Не помещается
@@ -104,24 +111,28 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         return S//Удаляем
       });
       
+      console.debug('if(o.top['+Math.round(o.top)+'] < ['+O+']O || (до окна + окно)Th['+Th+'] > ['+h+']h) => '+Tx);
       if (Tx) {//Не помещается вертикал. Меняем сторону
         C += S[6] == 'B'? 'T':'B';
-        console.debug(S[6]+' <= Меняем сторону. '+C);
+        console.debug((S[6] == 'B'? 'T':'B')+' <= Меняем сторону. '+C);
       } else {
         C+=S[6]
       }
       
+      //console.debug('if(o.left['+Math.round(o.left)+'] < ['+O+']O || (до окна + окно)Lh['+Lh+'] > ['+w+']w) => '+Lx);
       if(Lx) {//Не помещается горизонт
+        console.debug('if((S[7]'+S[7]+'==`L` && (o.left['+Math.round(o.left)+'] < ['+O+']O && Lw['+Lw+'] > ['+w+']w)) || (S[7]'+S[7]+'==`R` && o.left['+Math.round(o.left)+'] > ['+W+']W)) => '+ ((S[7]=='L' && (o.left < O && Lw > w)) || (S[7]=='R' && o.left > W)));
         //          с права есть место || с лева есть место <= (Вышло за пределы)
-        if((S[6]=='L' && (o.left + W)) || S[6]=='R' && o.left > W){//Меняем сторону
-          //console.debug(C);
+        if((S[7]=='L' && (o.left < O && Lw > w)) || (S[7]=='R' && o.left > W)){//Меняем сторону
           C += S[7] == 'R'? 'L':'R';
-          //console.debug(S[7]+' <= Меняем сторону. '+C);
+          console.debug((S[7] == 'R'? 'L':'R')+' <= Меняем сторону. '+C);
         } else {//Не можем сменить сторону `Не хватает места`
           C += S[7];//Оставим сторону и сместим окно
-          
+          console.debug((S[7]=='R'?'left':'right')+': '+(S[7] == 'R' ?w - Lw:o.left)+'px <= Сместим окно. '+C);
           n.css({[S[7]=='R'?'left':'right']:
-            (w - O - Lw)//Браузер окно - отступ - (До окна + окно)
+            S[7]=='R'
+              ? w - Lw//Браузер окно - (До окна + окно)
+              : o.left - O
           });
           
           B = 1;//Кнопку по центру

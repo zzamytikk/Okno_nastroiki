@@ -77,9 +77,11 @@
 }
 
 [class*="zONas-"] > div:last-child {z-index: 12;
+  --nas-LR: -8px;/* Смешение окна Лево/Право */
   position: absolute;
   padding: 4px;
   width: max-content;/* По размеру содержимому */
+  min-width: 50px;
   max-width: 80vw;/* Максимальная ширина подсказки */
   text-align: left;/* Максимальная ширина подсказки */
   color: var(--nas-C);
@@ -95,13 +97,21 @@
   transition: opacity 0s, transform 0s;
 }
 
-[class*="zONas-"] > div:last-child:is([style*="left:"], [style*="right:"]) {/* При смещении окна, закругляем края */
-  border-radius: 7px 7px 0 0;
+[class*="zONas-T"] > div:last-child:is([style*="left:"], [style*="right:"]) {/* При смещении окна, закругляем края */
+  border-radius: 0 0 3px 3px;
+}
+[class*="zONas-B"] > div:last-child:is([style*="left:"], [style*="right:"]) {/* При смещении окна, закругляем края */
+  border-radius: 3px 3px 0 0;
 }
 
 [class*="zONas-"] > div:last-child > * {
   max-height: 45vh;
-  overflow: auto;
+  overflow: auto
+}
+
+[class*="zONas-"] > div:last-child > *:empty::after {
+  content: 'Содержание `Всплывающее окно (Настройки/Разное)` отсутствует!';
+  color:red
 }
     /* ✦✦ ! ✦✦ *//* #endregion */
 
@@ -132,12 +142,12 @@
             /* ✦✦✦✦ ! ✦✦✦✦ *//* #endregion */
         
 .zONas-TL > div:last-child {/* Сторона верх с права на лево */
-  right: -3px;
+  right: var(--nas-LR);
   border-radius: 0 0 2px 7px;/* Скругления уголков рамки */
 }
 
 .zONas-TR > div:last-child {/* с лева на право */
-  left: -3px;
+  left: var(--nas-LR);
   border-radius: 0  0 7px 2px;
 }
 .zONas-TR::after {
@@ -160,13 +170,13 @@
             /* ✦✦✦✦ ! ✦✦✦✦ *//* #endregion */
         
 .zONas-BL > div:last-child {/* Сторона низ с права на лево */
-  right: -3px;
+  right: var(--nas-LR);
   border-radius: 7px 2px 0 0;/* Скругления уголков рамки */
 }
 
 .zONas-BR > div:last-child {/* С лева на право */
-  left: -3px;
-  border-radius: 0 7px 2px 0;
+  left: var(--nas-LR);
+  border-radius: 2px 7px 0 0;
 }
 .zONas-BR::after {
   left: 5px;
