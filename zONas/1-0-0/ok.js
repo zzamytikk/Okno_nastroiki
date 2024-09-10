@@ -6,7 +6,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   //zONas.$();//★ Всплывающее окно `Настройки/Разное` Запускаем!
   $: () => { //Вешаем click
     let O = zONas;
-    
+
     $('[class*="zONas-"]').find('>button:eq(0),:eq(0) button').each((i, e) => {
       if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа `Ключь не совпал! повесим обработчик`
         $(e).on('click.zONas', e => {O.C($(e.currentTarget))});
@@ -40,14 +40,23 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
      );
   */
   C: (b, x) => {//Обработка click 'b = button'
-    let B, d = b.closest('[class*="zONas-"]'),//Вокруг кнопки
+    let d = b.closest('[class*="zONas-"]'),//Вокруг кнопки
       N=d.find('>div').eq(-1);//Содержание
     
     if(!x && /zONasOm?/.test(d.attr('class'))){//Окно открыто `Закрываем`
       d.removeClass('zONasO zONasOm');
       N.removeAttr('style');
     } else {//Открываем/Проверка x=1
-      if(!x) {
+      let D = $(document),//Полный размер документа С прокруткой (Применять до display:'unset')
+        w = D.outerWidth(),
+        h = D.outerHeight();
+        
+      //console.debug(N.find('>div').html().replace(/[\r\n\t ]/g, '').length+' <= Количество символов содержания');
+      if(N.find('>div').html().replace(/[\r\n\t ]/g, '').length==0) {
+        N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
+      }
+      
+      if(!x) {//x=1; Запускаем для проверки
         setTimeout(() => {
           $(document).on('click.zONas', e => {//• Клик вне элемента  $()
              //если клик был не по нашему блоку && и не по его дочерним элементам
@@ -61,7 +70,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       
         N.css({display:'unset'});//Для определения: .offset()
       }
-      B = zONas.w(d, N);//сменим направление
+      B = zONas.w(d, N, w, h);//сменим направление
 
       d.addClass(
         'zONasO'+ (B || d.width() < 40//Смещение окна || Когда маленькая кнопка
@@ -70,38 +79,47 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       );
     }
   },
-  //d = Вокруг кнопки`zONas-[A-Z]`, n = Содержание окна
-  w: (d, n) => {//Когда не помещяется на экране`горизонтально`, сменим направление
-    let B, O = 12,//Отступ от стенок
-      b = $(window),
-      w = b.innerWidth(),//Размер браузер окна
-      h = b.innerHeight(),
-      sL = Math.round(b.scrollLeft()),//Отступ прокрутки
-      sT = Math.round(b.scrollTop()),
+  //d = Вокруг кнопки`zONas-[A-Z]`, n = Содержание окна, D = Полный размер документа С прокруткой
+  w: (d, n, w, h) => {//Когда не помещяется на экране`горизонтально`, сменим направление
+    let B, O = 10,//Отступ от стенок
+      //b = $(window),
+      //Bw = b.innerWidth(),//Размер браузер окна
+      //Bh = b.innerHeight(),
+      //sL = Math.round(b.scrollLeft()),//Отступ прокрутки
+      //sT = Math.round(b.scrollTop()),
       o = n.offset(),//Координаты left|top относительно окна + прокрутка
       //Ls = Math.round(sL + o.left),//Прокрутка + До окна
       //Ts = Math.round(sT + o.top),
+      
+      //L= Math.round(o.left - b.scrollLeft()),//Координаты left относительно окна + прокрутка
+      //T= Math.round(o.top - b.scrollTop()),  //top До окна без прокрутки (Видимая часть)
+      
       W = Math.round(n.outerWidth() + O),//Размер всплыв окна + отступ
       H = Math.round(n.outerHeight() + O),
      
-      Lw = Math.round(o.left + W),//до окна + окно = горизонт
-      Th = Math.round(o.top + H),
-      //  с лева || с права <= (Вышло за пределы)
-      Lx = o.left < O || Lw > w,//Окно не помещяется горизонт
-      Tx = o.top < O || Th > h;//вертикаль
+      LW = Math.round(o.left + W),//До окна + окно = горизонт
+      TH = Math.round(o.top + H),
+      //       с лева || с права <= (Вышло за пределы)
+      Lx = o.left < O || LW > w,//Окно не помещяется горизонт
+      Tx = o.top < O || TH > h;//вертикаль
     
-    console.debug('w: ' + w + ', h: ' + h+' <= Браузер окно');
+    
+    //console.debug('Bw: ' + Bw + ', Bh: ' + Bh+' <= Браузер окно');
+    console.debug('w: ' + w + ', h: ' + h+' <= Размер документа с прокруткой');
     console.debug('W: '+W+', H: '+H+' <= Размер окна');
-    console.debug('sL: ' + sL + ', sT: ' + sT+' <= scroll Прокрутка');
     console.debug('o.left: ' + Math.round(o.left)+', o.top: ' + Math.round(o.top)+' <= Координаты до окна');
+    console.debug('LW: '+LW+', TH: '+TH+' <= До окна + окно');
+    //console.debug('sL: ' + sL + ', sT: ' + sT+' <= scroll Прокрутка');
+    //console.debug('L: ' + L + ', T: ' + T+' <= scroll + o.left');
     //console.debug('Ls: ' + Ls + ', Ts: ' + Ts +' <= Прокрутка + До окна');
     console.debug(
-      'Lx: left['+Math.round(o.left)+'] < ['+O+']O || Lw['+Lw+'] > ['+w+']w (' + (Lx ? 'Не ' : '') + 'помещается left) <= До окна + окно\n' +
-      'Tx: top['+Math.round(o.top)+'] < ['+O+']O || Th['+Th+'] > ['+h+']h (' + (Tx ? 'Не ' : '') + 'помещается top)'
+      'Tx: top['+Math.round(o.top)+'] < ['+O+']O || TH['+TH+'] > ['+h+']h (' + (Tx ? 'Не ' : '') + 'помещается top) <= До окна + окно\n' +
+      'Lx: left['+Math.round(o.left)+'] < ['+O+']O || LW['+LW+'] > ['+w+']w (' + (Lx ? 'Не ' : '') + 'помещается left)'
     );
     
     if (Lx || Tx) {//Не помещается
-      let C = 'zONas-';
+      console.log('-');
+      let S, C = 'zONas-';
     
       d.removeClass(function(i, c) {//Сработает 1 раз 
         S = /zONas-[A-Z]+/.exec(c)[0];//Нашли zONas-..
@@ -111,7 +129,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         return S//Удаляем
       });
       
-      console.debug('if(o.top['+Math.round(o.top)+'] < ['+O+']O || (до окна + окно)Th['+Th+'] > ['+h+']h) => '+Tx);
+      console.debug('if(o.top['+Math.round(o.top)+'] < ['+O+']O || TH['+TH+'] > ['+h+']h) => '+Tx);
       if (Tx) {//Не помещается вертикал. Меняем сторону
         C += S[6] == 'B'? 'T':'B';
         console.debug((S[6] == 'B'? 'T':'B')+' <= Меняем сторону. '+C);
@@ -121,22 +139,22 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       
       //console.debug('if(o.left['+Math.round(o.left)+'] < ['+O+']O || (до окна + окно)Lh['+Lh+'] > ['+w+']w) => '+Lx);
       if(Lx) {//Не помещается горизонт
-        console.debug('if((S[7]'+S[7]+'==`L` && (o.left['+Math.round(o.left)+'] < ['+O+']O && Lw['+Lw+'] > ['+w+']w)) || (S[7]'+S[7]+'==`R` && o.left['+Math.round(o.left)+'] > ['+W+']W)) => '+ ((S[7]=='L' && (o.left < O && Lw > w)) || (S[7]=='R' && o.left > W)));
+        console.debug('if((S[7]'+S[7]+'==`L` && (o.left['+Math.round(o.left)+'] < ['+O+']O && LW['+LW+'] > ['+w+']w)) || (S[7]'+S[7]+'==`R` && o.left['+Math.round(o.left)+'] > ['+W+']W)) => '+ ((S[7]=='L' && (o.left < O && LW > w)) || (S[7]=='R' && o.left > W)));
         //          с права есть место || с лева есть место <= (Вышло за пределы)
-        if((S[7]=='L' && (o.left < O && Lw > w)) || (S[7]=='R' && o.left > W)){//Меняем сторону
+        if((S[7]=='L' && (o.left < O && LW > w)) || (S[7]=='R' && o.left > W)){//Меняем сторону
           C += S[7] == 'R'? 'L':'R';
           console.debug((S[7] == 'R'? 'L':'R')+' <= Меняем сторону. '+C);
         } else {//Не можем сменить сторону `Не хватает места`
           C += S[7];//Оставим сторону и сместим окно
-          console.debug((S[7]=='R'?'left':'right')+': '+(S[7] == 'R' ?w - Lw:o.left)+'px <= Сместим окно. '+C);
+          console.debug((S[7]=='R'?'left':'right')+': '+(S[7] == 'R' ?'w['+w+'] - ['+LW+']LW - ['+O+']O = '+(w - LW - O):'o.left['+o.left+']')+'px <= Сместим окно. '+C);
+          
           n.css({[S[7]=='R'?'left':'right']:
             S[7]=='R'
-              ? w - Lw//Браузер окно - (До окна + окно)
+              ? w - LW - O//Браузер окно - (До окна + окно) - Отступ от окна
               : o.left - O
           });
           
           B = 1;//Кнопку по центру
-          //console.debug((S[7]=='R'?'left':'right')+': '+(w - O - Lw)+ ' <= Сместим окно');
         }
       } else {
         C += S[7]
@@ -144,7 +162,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   
       d.addClass(C)
     }
-    //console.debug(d.attr('class'));
+
     return B
   },
   /* zMenu.f.oko(m=>{//Отслеживаем изменения размера браузер окна

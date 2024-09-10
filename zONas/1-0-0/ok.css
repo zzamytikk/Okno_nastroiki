@@ -65,8 +65,10 @@
 }
 
 /* ✦ Всплывающее окно (Настройки/Разное) .zONas-.. ✦ *//* #region */
-/* .zONasO  - Открываем
-   .zONasOm - Открываем и Стрелка по центру кнопки:`button` (Когда маленькая кнопка)
+/*[zonas="TR"] - На какую сторону сменили. `Для возврата`
+
+  .zONasO  - Открываем
+  .zONasOm - Открываем и Стрелка по центру кнопки:`button` (Когда маленькая кнопка)
 */
     /* ✦✦ ! ✦✦ *//* #region */
 [class*="zONas-"] {
@@ -94,7 +96,6 @@
   opacity: 0;
   /* Установим перед открытием в .js zONas.C().  Для точного определения .offset()//Координаты left|top относительно окна + прокрутка */
   transform: translateY(-9px);
-  transition: opacity 0s, transform 0s;
 }
 
 [class*="zONas-T"] > div:last-child:is([style*="left:"], [style*="right:"]) {/* При смещении окна, закругляем края */
@@ -106,12 +107,7 @@
 
 [class*="zONas-"] > div:last-child > * {
   max-height: 45vh;
-  overflow: auto
-}
-
-[class*="zONas-"] > div:last-child > *:empty::after {
-  content: 'Содержание `Всплывающее окно (Настройки/Разное)` отсутствует!';
-  color:red
+  overflow: auto;
 }
     /* ✦✦ ! ✦✦ *//* #endregion */
 
@@ -190,7 +186,7 @@
 [class*="zONasO"]::after {
   opacity: 1;
   transform: translateY(0);
-  transition: .7s;
+  transition: transform .5s, opacity .5s;
 }
 .zONasOm::after {/* Стрелка по центру кнопки:`button` (Когда маленькая кнопка) */
   left: 50%;
@@ -203,7 +199,8 @@
   visibility: visible;/* Вернём видемость для outline при нажатии TAB */
   opacity: 1;
   transform: translateY(0);
-  transition: .7s, left 0s, right 0s;
+  transition: transform .5s, opacity .5s;
+  /* transition: .7s, left 0s, right 0s;*/
 }
 [class*="uzONasO"] > div:last-child > * {
   width:100%;
