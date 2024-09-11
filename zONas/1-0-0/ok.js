@@ -120,8 +120,8 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
     if (Lx || Tx) {//Не помещается
       console.log('-');
       let S, C = 'zONas-';
-    
-      d.removeClass(function(i, c) {//Сработает 1 раз 
+      
+      d.removeClass((i, c) => {//Сработает 1 раз 
         S = /zONas-[A-Z]+/.exec(c)[0];//Нашли zONas-..
         //S[6];//T = Верх   || B = Низ
         //S[7];//L = В лево || R = В право
