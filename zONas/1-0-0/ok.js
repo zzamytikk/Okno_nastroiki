@@ -7,7 +7,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   $: () => { //Вешаем click
     let O = zONas;
 
-    $('[class*="zONas-"]').find('>button:eq(0),:eq(0) button').each((i, e) => {
+    $('[class*="zONas-"]').find('>button:eq(0),>:eq(0) button').each((i, e) => {
       if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа `Ключь не совпал! повесим обработчик`
         $(e).on('click.zONas', e => {O.C($(e.currentTarget))});
       } else {
