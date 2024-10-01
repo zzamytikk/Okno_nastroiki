@@ -29,20 +29,24 @@
   <main>
     <!-- Тестируем -->
     <style>
-      #ubrRam #cod {/* Убераем рамку */
+      .ubrRam #cod {/* Убераем рамку */
          margin:0;
          border:0;
          box-shadow:unset;
       }
-      #ubrRam > div:last-child {
+      .ubrRam > div:last-child {
         padding: 0
       }
     </style>
+    <div id="svoi" class="zONas-TL">
+      <div><button but>svoi</button></div>
+      <div><div>...</div></div>
+    </div>
     
-    <div id="ubrRam" class="zONas-BL all-c4">
+    <div class=".ubrRam zONas-BL all-c4">
         <button>iii</button>
         <div><div>
-          <pre id="cod" class="ram-n0 all-c5"><code class="v-BG0">
+          <pre id="cod" class="ram-n0 all-c5" style="margin: 0"><code class="v-BG0">
                 &lt;div class="zONas-TL all-c4">
                 &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
                 &nbsp; &lt;div>&lt;div>
@@ -922,7 +926,19 @@
       //z.z.Start.$();//Запуск: Скрыть/Показать (hidden), Подсветка кодов, 
       cPri.$();
       zHid.$();
-      zONas.$()
+      zONas.$();
+      zONas.$({
+        id: 'svoi',
+      
+        F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
+          //d = $() //<div id="svoi" class="zONas-
+          //N = $() //Путь до содержания окна
+          
+          setTimeout(() => {
+            zONas.L(d, b, N, 'Тут ваш текст! <b>оп оп!</b>');
+          }, 3000);
+        }
+      });
       
       setTimeout(() => {//Загрузка сайта
         e.style.width=0;
