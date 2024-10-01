@@ -79,7 +79,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       N = d.find('>div').eq(-1);//Содержание
       
     if (F) {
-      N.text('Загрузка...')
+      N.html('<div class="zONasL"></div>')
     }
     
     if(/zONasOm?/.test(d.attr('class'))){//Окно открыто `Закрываем`
@@ -94,7 +94,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         h = D.outerHeight();
         
       //console.debug(N.find('>div').html().replace(/[\r\n\t ]/g, '').length+' <= Количество символов содержания');
-      if((N.find('>div').html() || '').replace(/[\r\n\t ]/g, '').length==0) {
+      if(!F && (N.find('>div').html() || '').replace(/[\r\n\t ]/g, '').length==0) {
         N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
       }
       
