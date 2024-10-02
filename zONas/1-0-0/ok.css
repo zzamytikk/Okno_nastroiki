@@ -109,25 +109,6 @@
   max-height: 45vh;
   overflow: auto;
 }
-
-.zONasL {/* Загрузка */
-  margin: auto;
-  width: 20px;
-  height: 20px;
-  border: 3px solid red;
-  border-color: red #0000;
-  border-radius: 50%;
-  animation: B-vse 1.15s cubic-bezier(.45,.05,.55,.95) infinite;
-}
-@keyframes B-vse {
-    40% {
-      width: calc(100% - 4px);
-    }
-    90% {
-      width: 0;
-      border-color: #0000 orangered;
-    }
-}
     /* ✦✦ ! ✦✦ *//* #endregion */
 
     /* ✦✦ Сторона поивления + Рамка + стрелка ✦✦ *//* #region */
@@ -226,4 +207,28 @@
   height:100%;
 }
     /* ✦✦ Открываем/Стрелка по центру ✦✦ *//* #endregion */
+    
+    /* ✦✦ .zONasL Загрузка... ✦✦ *//* #region */
+.zONasL::before {z-index: 7;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom:0;
+  margin:0 2px;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #0000, red, #0000);
+  animation: B-vse 1.15s cubic-bezier(.45,.05,.55,.95) infinite;
+}
+@keyframes B-vse {/* Линия */
+    40% {
+      width: calc(100% - 4px);
+    }
+    90% {
+      left:unset;
+      right: 0;
+      width: 0;
+    }
+}
+    /* ✦✦ .zONasL Загрузка... ✦✦ *//* #endregion */
 /* ✦ Всплывающее окно (Настройки/Разное) .zONas-.. ✦ *//* #endregion */
