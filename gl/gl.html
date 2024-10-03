@@ -929,19 +929,19 @@
       zONas.$();
       zONas.$({
         id: 'svoi',
-      
         F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
           //d = $() //<div id="svoi" class="zONas-
+          //b = $() //<button
           //N = $() //Путь до содержания окна
           setTimeout(() => {
           $.ajax({
-            url: '/testAjax.html',         /* Куда отправить запрос */
-            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            url: '/testAjax.html',    /* Куда отправить запрос */
+            dataType: 'html',         /* Тип данных в ответе (xml, json, script, html). */
             success: function(htm){   /* функция которая будет выполнена после успешного запроса.  */
         	   zONas.L(d, b, N, htm);
             }
           });
-          }, 3000); 
+          }, 3000);
         }
       });
       
