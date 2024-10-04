@@ -50,7 +50,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   
           if (b[0]) { //Закроем
             //console.log('O.oko() Спрячим/Откроем');
-            b = b.find('>button:eq(0),:eq(0) button');
+            b = b.find('>button:eq(0),>:eq(0) button');
             O.C(b, 1);
             O.C(b, 2);
             //b.find('>button:eq(0),:eq(0) button')
