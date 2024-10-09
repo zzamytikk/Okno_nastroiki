@@ -17,7 +17,6 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         || • Вариант 2: 
       zONas.$({//★ Запускаем индивидуально для подгруза
         id: 'svoi', //Путь до <div id="svoi" class="zONas-
-        on: 'input',
         
         F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
           //d = $() //<div id="svoi" class="zONas-
@@ -26,9 +25,9 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
           
           $.ajax({
             url: '/testAjax.html',    //Куда отправить запрос.
-            dataType: 'html',         // Тип данных в ответе (xml, json, script, html).
-            success: function(htm){   // функция которая будет выполнена после успешного запроса.
-        	   zONas.L(d, b, N, htm);
+            dataType: 'html',         //Тип данных в ответе (xml, json, script, html).
+            success: function(htm){   //Функция которая будет выполнена после успешного запроса.
+        	   zONas.L(d, b, N, htm);   //Выводим наш текст HTML
             }
           });
         }
