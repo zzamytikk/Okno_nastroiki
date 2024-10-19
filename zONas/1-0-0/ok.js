@@ -71,6 +71,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа `Ключь не совпал! повесим обработчик`
           $(e).on('click.zONas', e => {
             e.preventDefault();//Отменить выполнение действия для <a
+            if($(e.currentTarget)[0].nodeName=='A'){e.preventDefault();}//отменить выполнение действия для <a
             //console.debug('click');
             O.C($(e.currentTarget), q?.F);
           });
