@@ -4,7 +4,7 @@
 */
 var zONas = {//Всплывающее окно `Настройки/Разное`
   //F:$(),//Ожидается подгрузка содержания (zONas.$({F: () => {}});) Убераем запуск, когда нажали на другое окно
- 
+  //F:1,//1 = Запрет на открытие окна. (Идёт ожидание ответа от function, загрузка другова окна)
   /* <div class="zONas-TL all-c4">
        <button>button</button><!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
        <div><div>Текст..</div></div>
@@ -14,35 +14,49 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   /*  //Запускает поиск всех class="zONas-.." (Кроме тех у которых установлен id="svoi"):
       zONas.$();//★ Всплывающее окно `Настройки/Разное` Запускаем!
        
-        || • Вариант 2: 
-      zONas.$({//★ Запускаем индивидуально для подгруза
+        || • Вариант 2:
+      zONas.$({//★ Запускаем индивидуально для подгруза через $.ajax
         id: 'svoi', //Путь до <div id="svoi" class="zONas-
         
         F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
-          //d = $() //<div id="svoi" class="zONas-
-          //b = $() //<button
-          //N = $() //Путь до содержания окна
+          //Путь $() до: 
+          //d = <div id="svoi" class="zONas-
+          //b = <button
+          //N = Содержания окна
           
           $.ajax({
             url: '/testAjax.html',    //Куда отправить запрос.
             dataType: 'html',         //Тип данных в ответе (xml, json, script, html).
             success: function(htm){   //Функция которая будет выполнена после успешного запроса.
+        	   //Тут можно обработать до вывода:
+        	   //htm=htm.replace(/удали меня/,'');
         	   zONas.L(d, b, N, htm);   //Выводим наш текст HTML
             }
           });
         }
       });
       
+        || • Вариант 3:
+      zONas.$({
+        id: 'svoi2',
+        F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
+          //Пути $() до: 
+          //d = <div id="svoi" class="zONas-
+          //b = <button
+          //N = Содержания окна
+          zONas.L(d, b, N, 'Содержание');
+        }
+      });
   */
   $: (q={}) => {//Вешаем click
     let O = zONas, on;
-    
-    if(!O.r) {
+    /*
+    if(!O.r) {//Не установили слежку
       O.oko(m => { //Отслеживаем изменения размера браузер окна
         let b,
           w = m.contentRect.width,
           h = m.contentRect.height;
-  
+        console.debug('изменения размера браузер окна');
         //Браузер oкно != Последняя запись проверки
         if (w != O.R || h != O.R) { //Изменили размер Браузер окна width
           b = $('.zONasO, .zONasOm');
@@ -63,15 +77,18 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       
       O.r = 1;//Отмена на повторную установку
     }
-  
+  */
     on = id => {//Вешаем click
       //console.debug('each', id);
-        
       id.each((i, e) => {
         if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа `Ключь не совпал! повесим обработчик`
           $(e).on('click.zONas', e => {
             if($(e.currentTarget)[0].nodeName=='A'){e.preventDefault();}//отменить выполнение действия для <a
-            //console.debug('click');
+            if (O.F) {
+              //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
+              return;
+            }
+            
             O.C($(e.currentTarget), q?.F);
           });
         } else {
@@ -80,27 +97,24 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
        });
     };
     
-    if(q.id && (q.id = $('body #' + q.id))[0]) {//По id="svoi"
-      on(q.id);
+    if(q.id && (q.id = $('#' + q.id))[0]) {//По id="svoi"
+      on(q.id.find('>button:eq(0),>:eq(0) button'));
     } else {//Поиск всех
       on($('[class*="zONas-"]').not('[id]').find('>button:eq(0),>:eq(0) button'))
     }
   },
   /* zONas.C(//Обработка
        $(),//id окна
-       F   //Для запуска function при открытии окна. zONas.$(q);
-           //• После именения размеров экрана .f.oko.$()
-           //F=1 //Закроем окно
-           //F=2 //Откроем
+       F   //function zONas.$({F: () => {}});
      );
   */
   C: (b, F) => {//Обработка click 'b = button'
-    let d = b.closest('[class*="zONas-"]'),//Вокруг кнопки
-      N = d.find('>div').eq(-1);//Содержание
+    let O = zONas,
+      d = b.closest('[class*="zONas-"]'),//Вокруг кнопки
+      N = d.find('>div').eq(-1);//Содержание +ещё .find('>div')
 
-    if(F == 1 || /zONasOm?/.test(d.attr('class'))){//Окно открыто `Закрываем`
-      d.removeClass('zONasO zONasOm');
-      N.removeAttr('style');
+    if(/zONasOm?/.test(d.attr('class'))){//Окно открыто `Закрываем`
+      O.X(d);//Закроем окно
     } else {//Открываем
       let D = $(document),//Полный размер документа С прокруткой (Применять до display:'unset')
         w = D.outerWidth(),
@@ -111,42 +125,62 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
       }
       
-      setTimeout(() => {
-        $(document).on('click.zONas', e => {//• Клик вне элемента  $()
+      if (typeof F == 'function') {//Начали обработку function
+        O.F = 1;
+        //console.debug('Начали обработку function');
+        d.addClass('zONasL');//Добавим загрузку
+        O.T = setTimeout(() => { //setTimeout Для отмены задержки ожидания обработки функции 15сек
+          console.debug('Отмена setTimeout');
+          N.find('>div').html('<font color=red>Возникла ошибка!<br>Обработки function!</font>');
+          O.C(b);
+          d.removeClass('zONasL'); //Уберём загрузку
+          O.F = 0;
+        }, 15000);
+        F(d, b, N.find('>div'));
+        return;
+      }
+      
+      setTimeout(() => {//Поможет закрыть другое открытое окно!
+        //console.debug('Установим document', d.has(e.target));
+        $(document).on('click.zONas', e => {//Клик вне элемента $()
+          //console.debug('click из document');
           //если клик был не по нашему блоку && и не по его дочерним элементам
-          if (!N.is(e.target) && !N.has(e.target)[0]) {//Клик вне элемента
-            $(document).off('.zONas');//† Удалим click
-            d.removeClass('zONasO zONasOm');//† Закрываем
-            N.removeAttr('style');
+          if (!d.is(e.target) && !d.has(e.target)[0]) { //Клик вне элемента
+            O.X(d);//Закроем окно
           }
         });
       }, 1);//Убераем срабатывание click при открытии
       
-      if (typeof F == 'function') {
-        zONas.F=d;//Ожидается подгрузка содержания (zONas.$({F: () => {}});)
-        d.addClass('zONasL');//Добавим загрузку
-        F(d, b, N); return;
-      } else if(zONas.F) {//Ждём подгрузки .html
-        zONas.F.removeClass('zONasL');//Уберём загрузку
-        zONas.F = 0;
-      }
-      
       N.css({display:'unset'});//Для определения: .offset()
 
-      B = zONas.w(d, N, w, h);//сменим направление
+      B = O.w(d, N, w, h);//сменим направление
 
       d.addClass(
         'zONasO'+ (B || d.width() < 40//Смещение окна || Когда маленькая кнопка
           ?'m'//Стрелка по центру кнопки 
           :'')
       );
+      
+      if(O.F){//function Загрузили и показали в окне.
+        console.debug('Обработали function');
+        clearTimeout(O.T);
+        O.F = 0;
+        d.removeClass('zONasL');//Уберём загрузку
+      }
     }
   },
+  X: d => {//O.X(d);//Закроем окно
+      //console.debug('Закроем окно', d);
+      $(document).off('.zONas');//† Удалим click вне элемента
+      d.removeClass('zONasO zONasOm zONasL');//† Закрываем
+      d.find('>div').removeAttr('style');//удаляем
+  },
+  //T:0,//setTimeout Для отмены задержки ожидания обработки функции 15сек
   /* d = $() //<div id="svoi" class="zONas-
      b = $() //<button
      N = $() //Путь до содержания окна */
   L: (d, b, N, t) => {//Подгрузка содержимого
-    //console.debug(zONas.F);
+    //console.debug('Подгрузка содержимого', zONas.F);
     if(zONas.F) {
       N.html(t);//Подгрузили текст
       zONas.C(b);//Откроем окно
@@ -233,6 +267,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       );
   }); */
   //r: 1,//Установили слежку
+  //db: //Установили слежку
   //R:[0, 0]//[width, height] Последний размер Браузер окна
   oko: f => {
     let M = window.ResizeObserver; //Отслеживаем изменения размера окна
@@ -244,6 +279,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         //console.debug(m[0]);
       })
       .observe($('html')[0], {}); //Передаем элемент и настройки в наблюдатель
+      console.debug(zONas.db);
     }
   }
 };
