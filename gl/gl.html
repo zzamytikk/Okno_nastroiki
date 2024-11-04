@@ -59,6 +59,7 @@
       <div><button>pju</button></div>
       <div><div></div></div>
     </div>
+
     1) У края кнопка большая, уменьшение стрелки не требуется
     <fieldset class="ubrRam all-c3 v-BG0">
       <legend>Тестируем</legend>
@@ -956,11 +957,13 @@
         <b>class</b><s>all-c8</s>
       </div>
     </div>
+    
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 1:</b></h4>
     <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
     &lt;div class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
     &nbsp; &lt;div>&lt;div>
-    &nbsp; &nbsp; Текст..
+    &nbsp; &nbsp; Ваш текст тут..
     &nbsp; &lt;/div>&lt;/div>
     &lt;/div>
     
@@ -975,7 +978,7 @@
     
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 2:</b></h4>
     <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
-    &lt;div id="svoi" class="zONas-TL all-c4">
+    &lt;div id="svoi2" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
     &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
     &lt;/div>
@@ -983,12 +986,38 @@
     &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
     &lt;script>
     &nbsp; document.addEventListener('DOMContentLoaded', () => {
-    &nbsp; &nbsp; //Поиск по &lt;div id="svoi"
+    &nbsp; &nbsp; //Поиск по &lt;div id="svoi2"
     &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
-    &nbsp; &nbsp; &nbsp; id: 'svoi', //Путь до &lt;div id="svoi" class="zONas-
+    &nbsp; &nbsp; &nbsp; id: 'svoi2', //Путь до &lt;div id="svoi2" class="zONas-
     
     &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
-    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id=" svoi" class="zONas-
+    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+    &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
+    &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
+    
+    &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');
+    &nbsp; &nbsp; &nbsp; }
+    &nbsp; &nbsp; });
+    &nbsp; });
+    &lt;/script>
+    </code></pre>
+    
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 3:</b></h4>
+    <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
+    &lt;div id="svoi3" class="zONas-TL all-c4">
+    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+    &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
+    &lt;/div>
+    
+    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+    &lt;script>
+    &nbsp; document.addEventListener('DOMContentLoaded', () => {
+    &nbsp; &nbsp; //Поиск по &lt;div id="svoi3"
+    &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
+    &nbsp; &nbsp; &nbsp; id: 'svoi3', //Путь до &lt;div id="svoi3" class="zONas-
+    
+    &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
+    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi3" class="zONas-
     &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
     &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
     
@@ -996,6 +1025,7 @@
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; url: '/testAjax.html', //Куда отправить запрос.
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataType: 'html', //Тип данных в ответе (xml, json, script, html).
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; success: function(htm){ //Функция которая будет выполнена после успешного запроса.
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Тут можно обработать до вывода: htm = htm.replace(/удали меня/,'');
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, htm); //Выводим наш текст HTML
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
     &nbsp; &nbsp; &nbsp; &nbsp; });
