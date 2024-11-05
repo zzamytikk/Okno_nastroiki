@@ -46,7 +46,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       });
   */
   //http://localhost:7700/zONas/1-0-0/ok.css
-  iB: '>button:eq(0),>:eq(0) button,>a:eq(0),>:eq(0) a',//Путь до кнопки: .find('>button:eq(0),>:eq(0) button'))
+  iB: '>button:eq(0),>:eq(0) button,#zonasb,.zonasb',//Путь до кнопки: .find('>button:eq(0),>:eq(0) button'))
   //F:1,//1 = Запрет на открытие окна. (Идёт ожидание ответа от function, загрузка другова окна)
   $: (q={}) => {//Вешаем click
     let O = zONas,
