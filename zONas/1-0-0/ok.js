@@ -27,7 +27,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
             dataType: 'html',         //Тип данных в ответе (xml, json, script, html).
             success: function(htm){   //Функция которая будет выполнена после успешного запроса.
         	   //Тут можно обработать до вывода: htm = htm.replace(/удали меня/,'');
-        	   zONas.L(d, b, N, htm);   //Выводим наш текст HTML
+        	   zONas.L(d, b, N, htm);   //Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
             }
           });
         }
@@ -41,7 +41,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
           //d = <div id="svoi" class="zONas-
           //b = <button
           //N = Содержания окна
-          zONas.L(d, b, N, 'Тут ваш <b>текст</b>');
+          zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
         }
       });
   */
@@ -53,10 +53,10 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       on = id => {//Вешаем click
         //console.debug('each', id);
         id.each((i, e) => {
-          if ($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа `Ключь не совпал! повесим обработчик`
+          if($._data($(e)[0], 'events')?.click[0].namespace != 'zONas') { //Проверка ключа `Ключь не совпал! повесим обработчик`
             $(e).on('click.zONas', e => {
               if($(e.currentTarget)[0].nodeName=='A'){e.preventDefault();}//отменить выполнение действия для <a
-              if (O.F) {//console.debug('Идёт ожидание ответа от function, загрузка другова окна');
+              if(O.F) {//console.debug('Идёт ожидание ответа от function, загрузка другова окна');
                 return
               }
               
@@ -87,13 +87,15 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
     if(/zONasO/.test(d.attr('class'))){//Окно открыто `Закрываем`
       O.X(d);//Закроем окно
     } else {//Открываем
+      clearTimeout(O.T2);//Слежка за размером браузер окна
+      
       let D = $('html'),//Полный размер документа С прокруткой (Применять до display:'unset')
         w = Math.round(D.outerWidth()),
         h = Math.round(D.outerHeight()),
         K = [Math.round(d.offset().left), Math.round(d.outerWidth())];//До кнопки, Размер кнопки
       
       //console.debug(N.find('>div').html().replace(/[\r\n\t ]/g, '').length+' <= Количество символов содержания');
-      if(!F && (N.find('>div').html() || '').replace(/[\r\n\t ]/g, '').length==0) {
+      if((N.find('>div').html() || '').replace(/[\r\n\t ]/g, '').length==0) {
         N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
       }
       
@@ -106,13 +108,14 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
           N.find('>div').html('<font color=red>Возникла ошибка!<br>Обработки function!</font>');
           O.C(b);
           d.removeClass('zONasL'); //Уберём загрузку
-          O.F = 0;
+          O.F = 0;//Убераем запрет на открытие окна.
         }, 15000);
         F(d, b, N.find('>div'));
         return;
       }
       
-      O.D(d,O);//click вне окна, слежка за браузер окном
+      O.D(d,O);//click вне окна
+      O.O(d,O);//Отслеживаем изменения размера браузер окна
       
       N.css({display:'unset'});//Для определения: .offset()
       
@@ -120,15 +123,15 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
       
       if(O.F){//Обработали function. (Загрузили и показали в окне)
         //console.debug('Обработали function');
-        clearTimeout(O.T);
-        O.F = 0;
+        clearTimeout(O.T);//15 сек до автоОтмены
+        O.F = 0;//Убераем запрет на открытие окна.
         d.removeClass('zONasL');//Уберём загрузку
       }
     }
   },
   X: d => {//O.X(d);//Закроем окно
     let O = zONas;
-    //console.debug('Закроем окно', d, O.db);
+    //console.debug('O.X(d); Закроем окно', d, O.db);
     clearTimeout(O.T2);//Слежка за размером браузер окна
     if(O.db){
       O.db.disconnect();//Удалим слежку за окном браузера
@@ -144,10 +147,17 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
      b = $() //<button
      N = $() //Путь до содержания окна */
   L: (d, b, N, t) => {//Подгрузка содержимого
-    //console.debug('Подгрузка содержимого', zONas.F);
-    if(zONas.F) {
-      N.html(t);//Подгрузили текст
-      zONas.C(b);//Откроем окно
+    let O = zONas;
+    
+    //console.debug('Подгрузка содержимого завершена', zONas.F);
+    if(O.F) {
+      if(t===false){//Пришол запрос остановить!
+        clearTimeout(O.T);//15 сек до автоОтмены
+        O.F = 0;//Убераем запрет на открытие окна.
+      } else {
+        N.html(t);//Подгрузили текст
+        O.C(b);//Откроем окно
+      }
       d.removeClass('zONasL');//Уберём загрузку
     }
   },
@@ -158,7 +168,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
      K = [5,7] До кнопки, Размер кнопки
   */
   w: (d, n, w, h, K) => {//Когда не помещяется на экране`горизонтально`, сменим направление
-    let B, i, O = 2,//Отступ от стенок
+    let B, i, O = 4,//Отступ от стенок
       o = n.offset(),//Координаты left|top относительно окна + прокрутка
       L = Math.round(o.left),
       T = Math.round(o.top),
@@ -262,10 +272,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
     console.info('------------------------------');
     */
   },
-  //T2:0,//clearTimeout
-  R:[0, 0],//[width, height] Последний размер Браузер окна
-  D: (d, O) => {//zONas.D(d,O);//click вне окна, слежка за браузер окном
-    //d=$(Окно), O=zONas.
+  D: (d, O) => {//zONas.D(d,O);//click вне окна //d=$(Окно), O=zONas.
     setTimeout(() => {//Поможет закрыть другое открытое окно!
       //console.debug('Установим document', d.has(e.target));
       $(document).on('click.zONas', e => {//Клик вне элемента $()
@@ -276,27 +283,37 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
         }
       });
     }, 1); //Убераем срабатывание click при открытии
-    
-    O.oko(m => { //Отслеживаем изменения размера браузер окна
-      let W = m.contentRect.width,
-        H = m.contentRect.height;
-      //console.debug('Изменения размера браузер окна');
-      //console.debug('if (W[' + W + '] != [' + O.R[0] + ']O.R[0] || H[' + H + '] != [' + O.R[1] + ']O.R[1]) =>', W != O.R[0] || H != O.R[1]);
-      //Браузер oкно != Последняя запись проверки
-      if (W != O.R[0] || H != O.R[1]) { //Изменили размер Браузер окна width
-        if (d[0] && O.R[0] !== 0) { //Закроем
-          //console.log('O.oko() Спрячим/Откроем');
-          O.X(d);//Закроем окно
-            
-          clearTimeout(O.T2);
-          O.T2 = setTimeout(() => {
-            O.C(d.find(O.iB));//Откроем
-          }, 500);
-        }
+  },
+  //T2:0,//clearTimeout
+  //R: 0, //width Последний размер Браузер окна
+  O: (d, O) => {//zONas.O(d,O);//Отслеживаем изменения размера браузер окна  //d=$(Окно), O=zONas.
+    clearTimeout(O.T2);
+    O.T2 = setTimeout(() => {//Убераем проблему input[text] (При первом нажатии появитса клавиатура и сработает Закрыть-Открыть)
+      O.oko(m => {
+        let W = m.contentRect.width;
+          //H = m.contentRect.height;  ! height проблема в поивлении клавиатуры input[text]
         
-        O.R = [W, H];//Обновим
-      }
-    });
+        /*console.debug('O(); Изменения размера браузер окна\n'+
+          'if(W[' + Math.round(W) + '] != [' + Math.round(O.R) + ']O.R =>', (Math.round(W) != Math.round(O.R))+'\n'+
+          'if(O.R`' + O.R + '` && d`' + !!d[0] + '`) => ' + !!(O.R && d[0])
+        );*/
+        //Браузер oкно != Последняя запись проверки
+        if(W != O.R) {//Изменили размер Браузер окна width
+          if(O.R && d[0]) {//Закроем
+            //console.log('O.oko() Спрячим/Откроем');
+            O.X(d);//Закроем окно
+      
+            clearTimeout(O.T2);
+            O.T2 = setTimeout(() => {
+              O.C(d.find(O.iB));//Откроем
+              O.R = W;//Обновим
+            }, 500);
+          }
+          
+          O.R = W; //Обновим
+        }
+      });
+    }, 999);
   },
   /* zONas.oko(m=>{//Отслеживаем изменения размера браузер окна
       console.debug(
@@ -309,7 +326,7 @@ var zONas = {//Всплывающее окно `Настройки/Разное`
   //db: //Установили слежку/Удалили
   oko: f => {//zONas.db.disconnect();
     let M = window.ResizeObserver; //Отслеживаем изменения размера окна
-
+    //console.debug('oko(); Вешаем око');
     if (typeof M !== 'undefined') {
       zONas.db = new M(m => { //1~> Сработало! Наблюдение за обьектом
         f(m[0]);

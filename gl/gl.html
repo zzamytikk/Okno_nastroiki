@@ -52,11 +52,11 @@
         </div></div>
       </div>
     <div id="svoi" class="zONas-TL">
-      <div><button but>svoi</button></div>
+      <div><button but>Загрузка</button></div>
       <div><div></div></div>
     </div>
     <div id="svoi2" class="zONas-TR" style="float:right;">
-      <div><a id="zonasb">pjuщ</a></div>
+      <div><a id="zonasb" href="">pjuщ</a></div>
       <div><div></div></div>
     </div>
     
@@ -889,7 +889,7 @@
       <ul class="ram-V0 all-c8">
         <li>Для выбора другой кнопки необходимо добавить:</li> 
         <li><b>id</b> &lt;a id="zonasb">кнопка&lt;/a></li>
-        <li><b>class</b> &lt;input class="zonasb"></li>
+        <li><b>class</b> &lt;a id="zonasb">кнопка&lt;/a></li>
       </ul>
     </div></div>
     
@@ -1005,7 +1005,7 @@
     &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
     &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
     
-    &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');
+    &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
     &nbsp; &nbsp; &nbsp; }
     &nbsp; &nbsp; });
     &nbsp; });
@@ -1036,7 +1036,7 @@
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataType: 'html', //Тип данных в ответе (xml, json, script, html).
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; success: function(htm){ //Функция которая будет выполнена после успешного запроса.
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Тут можно обработать до вывода: htm = htm.replace(/удали меня/,'');
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, htm); //Выводим наш текст HTML
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, htm);//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
     &nbsp; &nbsp; &nbsp; &nbsp; });
     &nbsp; &nbsp; &nbsp; }
@@ -1118,7 +1118,7 @@
           });
          }, 3000);
         }
-      });
+      });//ajax
       zONas.$({
         id: 'svoi2',
         F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
@@ -1128,7 +1128,7 @@
           //N = Содержания окна
           zONas.L(d, b, N, 'Содержание');
         }
-      });
+      });//Просто текст
       
       setTimeout(() => {//Загрузка сайта
         e.style.width=0;
