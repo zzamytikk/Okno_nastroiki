@@ -38,6 +38,25 @@
         padding: 0
       }
     </style>
+    
+    <!-- <div id="radio" class="zONas-TL">
+      <div class="B-i-CR all-c1">
+        <input class="zonasb" type="radio" name="stxt" value="1" checked>
+        <s></s>
+        <b>value 1</b>
+      </div>
+      <div><div></div></div>
+    </div>
+    
+    <div id="radio2" class="zONas-TL">
+      <div class="B-i-CR all-c1">
+        <input class="zonasb" type="radio" name="stxt" value="2">
+        <s></s>
+        <b>value 2</b>
+      </div>
+      <div><div></div></div>
+    </div> -->
+    
     <div class="ubrRam zONas-BL all-c4">
         <button>ii</button>
         <div><div>
@@ -1107,9 +1126,9 @@
           //N = $() //Путь до содержания окна
           setTimeout(() => {
           $.ajax({
-            url: '/testAjax.html',    /* Куда отправить запрос */
-            dataType: 'html',         /* Тип данных в ответе (xml, json, script, html). */
-            success: htm => {   /* функция которая будет выполнена после успешного запроса.  */
+            url: '/testAjax.html',    //Куда отправить запрос
+            dataType: 'html',         //Тип данных в ответе (xml, json, script, html).
+            success: htm => {   //функция которая будет выполнена после успешного запроса.
         	   zONas.t=zONas.t?++zONas.t:1;
         	   zONas.L(d, b, N, zONas.t+' '+htm);
             }
@@ -1117,6 +1136,19 @@
          }, 3000);
         }
       });//ajax
+      
+      /* zONas.$({
+        id: 'radio',
+        F: (d, b, N) => {
+          zONas.L(d, b, N, 'Содержание');
+        }
+      });
+      zONas.$({
+        id: 'radio2',
+        F: (d, b, N) => {
+          zONas.L(d, b, N, 'Содержание');
+        }
+      });*/
       zONas.$({
         id: 'svoi2',
         F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
@@ -1127,7 +1159,6 @@
           zONas.L(d, b, N, 'Содержание');
         }
       });//Просто текст
-      
       setTimeout(() => {//Загрузка сайта
         e.style.width=0;
         e.style.background='#0b0';

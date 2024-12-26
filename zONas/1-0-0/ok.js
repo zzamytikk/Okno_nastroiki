@@ -66,7 +66,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               if (O.F) { //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
                 return
               }
-
+             
               O.C($(e.currentTarget), q?.F);
             });
           } else {
@@ -77,9 +77,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
 
     on( //Вешаем click (Путь до <button):
       q.id && (q.id = $('#' + q.id.replace('#', '')))[0] //По id="svoi"
-      ?
-      q.id.find(O.iB) :
-      $('[class*="zONas-"]').not('[id]').find(O.iB) //Поиск всех
+        ? q.id.find(O.iB)
+        : $('[class*="zONas-"]').not('[id]').find(O.iB) //Поиск всех
     )
   },
   /* zONas.C(//Обработка
@@ -96,12 +95,12 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       O.X(d); //Закроем окно
     } else { //Открываем
       clearTimeout(O.T2); //Слежка за размером браузер окна
-
+      
       let X, D = $(document), //Полный размер документа С прокруткой (Применять до display:'unset')
         w = Math.round(D.outerWidth()),
         h = Math.round(D.outerHeight()),
         K = [Math.round(d.offset().left), Math.round(d.outerWidth())]; //До кнопки, Размер кнопки
-
+      
       if ((X = $('[class*="zONas-"]'))[0]) { //Нашли открытое окно!
         O.X(X); //Закроем окно
       }
