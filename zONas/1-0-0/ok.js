@@ -87,24 +87,21 @@ var zONas = { //Всплывающее окно `Настройки/Разное
      );
   */
   C: (b, F) => { //Обработка click 'b = button'
-    let O = zONas,
-      d = b.closest('[class*="zONas-"]'), //Вокруг кнопки
-      N = d.find('>div').eq(-1); //Содержание +ещё .find('>div')
+    let c, O = zONas,
+      d = b.closest('[class*="zONas-"]');//Вокруг кнопки
 
-    if (/zONasO/.test(d.attr('class'))) { //Окно открыто `Закрываем`
+    if (/zONasO/.test(c = d.attr('class'))) { //Окно открыто `Закрываем`
       O.X(d); //Закроем окно
     } else { //Открываем
       clearTimeout(O.T2); //Слежка за размером браузер окна
       
-      let X, D = $(document), //Полный размер документа С прокруткой (Применять до display:'unset')
-        w = Math.round(D.outerWidth()),
-        h = Math.round(D.outerHeight()),
-        K = [Math.round(d.offset().left), Math.round(d.outerWidth())]; //До кнопки, Размер кнопки
+      let X, N;
       
       if ((X = $('[class*="zONas-"]'))[0]) { //Нашли открытое окно!
         O.X(X); //Закроем окно
       }
 
+      N = d.find('>div').eq(-1);//Содержание +ещё .find('>div');
       //console.debug(N.find('>div').html().replace(/[\r\n\t ]/g, '').length+' <= Количество символов содержания');
       if ((N.find('>div').html() || '').replace(/[\r\n\t ]/g, '').length == 0) {
         N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
@@ -125,12 +122,9 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         return;
       }
 
-      O.D(d, O); //click вне окна
+      //O.D(d, O); //click вне окна
       O.O(d, O); //Отслеживаем изменения размера браузер окна
-
-      N.css({ display: 'unset' }); //Для определения: .offset()
-
-      O.w(d, N, w, h, K); //Сменим направление
+      O.w(d, N, c); //Сменим направление
 
       if (O.F) { //Обработали function. (Загрузили и показали в окне)
         //console.debug('Обработали function');
@@ -150,7 +144,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
     }
 
     $(document).off('.zONas'); //† Удалим click вне элемента
-    d.removeClass('zONasO zONasOm zONasL zONasOi'); //† Закрываем
+    d.removeClass('zONasO zONasOm zONasL zONasOmi zONasOmik'); //† Закрываем
     d.find('>div').removeAttr('style'); //удаляем
   },
   //T:0,//setTimeout Для отмены задержки ожидания обработки функции 15сек
@@ -173,51 +167,69 @@ var zONas = { //Всплывающее окно `Настройки/Разное
     }
   },
   /* d = Вокруг кнопки`zONas-[A-Z]`,
-     n = Содержание окна,
-     w = Полный размер документа С прокруткой
-     h = Полный размер документа С прокруткой
-     K = [5,7] До кнопки, Размер кнопки
+     n = Содержание окна
+     c = class заданный пользователем
   */
-  w: (d, n, w, h, K) => { //Когда не помещяется на экране`горизонтально`, сменим направление
-    let B, i, O = zONas.N.o, //Отступ от стенок
-      o = n.offset(), //Координаты left|top относительно окна + прокрутка
-      L = Math.round(o.left),
-      T = Math.round(o.top),
-
-      W = Math.round(n.outerWidth() + O), //Размер всплыв окна + отступ
-      H = Math.round(n.outerHeight() + O),
-
-      LW = Math.round(L + W), //До окна + окно = горизонт
-      TH = Math.round(T + H),
-      //       с лева || с права <= (Вышло за пределы)
-      Lx = L < O || LW > w, //Окно не помещяется горизонт
-      Tx = T < O || TH > h; //вертикаль
-    /*
-    console.info('START----------------До:');
-    console.debug('w: ' + w + ', h: ' + h+' <= Размер документа с прокруткой');
-    console.debug('W: '+W+', H: '+H+' <= Размер окна');
-    console.debug('o.left: ' + L+', o.top: ' + T+' <= Координаты до окна');
-    console.debug('LW: '+LW+', TH: '+TH+' <= До окна + окно');
+  w: (d, n, c) => { //Когда не помещяется на экране`горизонтально`, сменим направление
+    let B, i, O = 4,//zONas.N.o,//Отступ от стенок
+      D = $(document),//Полный размер документа С прокруткой
+      w = D.outerWidth(),
+      h = D.outerHeight(),
+      
+      W = n.outerWidth() + O,//Размер всплыв окна + отступ
+      H = n.outerHeight() + O,
+      
+      //Кнопка:
+      K = d.offset(),//Координаты left|top относительно окна + прокрутка
+      KL = K.left,
+      KT = K.top,
+      //Размер:
+      KW = d.outerWidth(),
+      KH = d.outerHeight(),
+      
+      //S[6] - T=Top/B=Bottom, S[7] - L=Left/R=Right
+      S = /zONas-[A-Z]+/.exec(c)[0],
+      //От кнопки до окна:
+      sL = +n.css('--nas-LR').replace(/[a-z]+/,'');
+      sT = 9,//в css расстояние анимации
+      
+      //Окно: //Координаты left|top относительно окна + прокрутка
+      L = S[7] == 'R'
+        ? KL + sL//До кнопки + От кнопки до окна
+        : (KL + KW + (sL < 0 ? Math.abs(sL) : sL - (sL * 2))) - (W - O);//(До кнопки + Размер кнопки + От кнопки до окна) - (Размер окна - Отступ от стенок)
+      T = S[6] == 'T'
+        ? KT - (H - O) - sT - +n.css('border-top-width').replace(/[a-z]+/,'')//До кнопки - (Размер окна - Отступ от стенок) - От кнопки до окна - border-top
+        : KT + KH + sT + +n.css('border-bottom-width').replace(/[a-z]+/,''),//До кнопки + Размер кнопки + От кнопки до окна + border-bottom
+      //До окна + окно = горизонт:
+      LW = L + W,
+      TH = T + H,
+      
+      //  с лева || с права <= (Вышло за пределы)
+      Tx = T < O || TH > h,//Вертикаль
+      Lx = L < O || LW > w;//Окно не помещяется горизонт
+    
+    //d.addClass('zONasO');n.css({ display:'block', opacity:1, visibility: 'unset' });//Убераем выход за пределы
+    
+    console.info('START---------('+S+')------До:');
+    console.debug('w: ' + w.toFixed(2) + ', h: ' + h.toFixed(2)+' <= Размер документа с прокруткой');
+    console.debug('W: '+W.toFixed(2)+', H: '+H.toFixed(2)+' <= Размер окна');
+    console.debug('left KL: ' + KL.toFixed(2)+', top KT: ' + KT.toFixed(2)+' <= Координаты до кнопки');
+    console.debug('KW: '+KW.toFixed(2)+', KH: '+KH.toFixed(2)+' <= Размер Кнопки');
+    console.debug('sL: '+sL.toFixed(2)+', sT: '+sT.toFixed(2)+' <= От кнопки до окна');
+    console.debug('left L: ' + L.toFixed(2)+', top T: ' + T.toFixed(2)+' <= Координаты до окна');
+    console.debug('LW: '+LW.toFixed(2)+', TH: '+TH.toFixed(2)+' <= До окна + окно');
     console.debug(
-      'Tx: top['+T+'] < ['+O+']O || TH['+TH+'] > ['+h+']h (' + (Tx ? 'Не ' : '') + 'помещается top) <= До окна + окно\n' +
-      'Lx: left['+L+'] < ['+O+']O || LW['+LW+'] > ['+w+']w (' + (Lx ? 'Не ' : '') + 'помещается left)'
+      'Tx: top['+T.toFixed(2)+'] < ['+O+']O || TH['+TH.toFixed(2)+'] > ['+h.toFixed(2)+']h (' + (Tx ? 'Не ' : '') + 'помещается top) <= До окна + окно\n' +
+      'Lx: left['+L.toFixed(2)+'] < ['+O+']O || LW['+LW.toFixed(2)+'] > ['+w.toFixed(2)+']w (' + (Lx ? 'Не ' : '') + 'помещается left)'
     );
     console.info('------------------------------');
-    */
+    //return;
     if (Lx || Tx) { //Не помещается
       //console.log('-');
-      let S, C = 'zONas-';
-
-      d.removeClass((i, c) => { //Сработает 1 раз 
-        S = /zONas-[A-Z]+/.exec(c)[0]; //Нашли zONas-..
-        //S[6];//T = Верх   || B = Низ
-        //S[7];//L = В лево || R = В право
-        //console.debug('Удалили class: '+S);
-        return S //Удаляем
-      });
-
+      let C = 'zONas-', j;
+      
       //console.debug('if(o.top['+T+'] < ['+O+']O || TH['+TH+'] > ['+h+']h) => '+Tx);
-      if (Tx) { //Не помещается вертикал. Меняем сторону
+      if (Tx) {//Не помещается вертикал. Меняем сторону
         C += S[6] == 'B' ? 'T' : 'B';
         //console.debug(S[6]+' на '+(S[6] == 'B'? 'T':'B')+' <= Меняем сторону. '+C);
       } else {
@@ -225,63 +237,72 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       }
 
       //console.debug('if(o.left['+L+'] < ['+O+']O || (до окна + окно)LW['+LW+'] > ['+w+']w) => '+Lx);
-      if (Lx) { //Не помещается горизонт
-        C += S[7]; //Оставим сторону и сместим окно
-        /*console.debug((S[7]=='R'?'left':'right')+': '+
-          (S[7] == 'R'
-            ?'w['+w+'] - ['+LW+']LW + [-8](css) = '+(w - LW + -8)
-            :'o.left['+L+'] - ['+O+']O + [-8](css) = '+(L - O + -8)
-        )+'px <= Сместим окно. '+C);*/
-
-        n.css({
-          [S[7] == 'R' ? 'left' : 'right']: S[7] == 'R' ?
-            w - LW + -8 //Браузер окно - (До окна + окно) + -8 left/right в css
-            :
-            L - O + -8 //left - Отступ от края + -8 left/right в css
-        });
-
-        //9=Примерно
-        L = K[0] < (9 + O); //До кнопки от стенки с лева
-        R = (w - (K[0] + K[1])) < (9 + O); //С права
-        /*console.debug('Размер кнопки: K[1]`'+K[1]+'` < 35 => '+(K[1] < 35)+'\n',
-          'L: K['+K[0]+'] < ['+(9 + O)+'](5 + ['+O+']O) => '+L+', \n'+
-          'R: (w['+w+'] - ['+(K[0] + K[1])+'](K['+K[0]+'] + ['+K[1]+']K[1])['+(w - (K[0] + K[1]))+'] < ['+(9 + O)+'](9 + ['+O+']O) => '+R+' <= До кнопки');
+      if (Lx) {//Не помещается горизонт
+        //До кноп с лева < 9=Примерно + Отступ
+        let mL = KL < (9 + O),//До кнопки от стенки с лева
+          mR = (w - (KL + KW)) < (9 + O);//С права
+        /*
+        console.debug('Размер кнопки: KW`'+KW.toFixed(2)+'` < 35 => '+(KW < 35)+' <= Кнопка меньше\n',
+          'L: KL['+KL.toFixed(2)+'] < ['+(9 + O)+'](9 + ['+O+']O) => '+mL+', <= До кнопки от стенки\n'+
+          'R: (w['+w.toFixed(2)+'] - ['+(KL + KW).toFixed(2)+'](KL['+KL.toFixed(2)+'] + ['+KW.toFixed(2)+']KW)['+(w - (KL + KW)).toFixed(2)+'] < ['+(9 + O)+'](9 + ['+O+']O) => '+mR);
         */
         //Размер кнопки && (До кнопки от стенки с лева || До кнопки от стенки с права)
-        if (K[1] < 35 && (L || R)) { i = 1 } //Уменьшаем стрелку (Кнопка у края)
-
+        if (KW < 35 && (mL || mR)){//Уменьшаем стрелку (Кнопка у края)
+          i = KW < 15//С краю
+            ? 2
+            : 1//По центру
+        }
+        
+        j = n => {
+          n = L < O//Не помещается с лева:
+            ? KL//До кнопки - Отступ от стенки
+            //Не помещается с права:
+            : (w - (KL + KW));
+          //console.debug('KL fun', n.toFixed(2));
+          return n < O? O - n : +('-' + (n - O))
+        };
+        //[0=Left/1=right,На сколько, Сменим сторону(L/R)]
+        j = L < O//Не помещается с лева:
+          ? S[7] == 'R'
+            ? [, j()]
+            //L:
+            : mL//Кнопка блиска к стенке:
+              ? [, j(), 'R']//Сменим направление (Для правильного направления стрелки)
+              //left - Отступ от края + -8 left/right в css:
+              : [1, L - O + -8]//L оставим сторону и сместим окно
+          //Не помещается с права:
+          : S[7] == 'L'
+            ? [1, j()]
+            //R:
+            : mR//Кнопка блиска к стенке:
+              ? [1, j(), 'L']//Сменим направление (Для правильного направления стрелки)
+              //Браузер окно - (До окна + окно) + -8 left/right в css
+              : [, w - LW + -8];//R оставим сторону и сместим окно
+          
+        if(j[2]){C+=j[2]}//Сменим сторону
+        
+        //console.debug('Сместим окно:', j);
+        n.css({[j[0]?'right':'left']: +j[1].toFixed(2)});
+        
         B = 1; //Кнопку по центру
-      } else {
-        C += S[7]
       }
-
-      d.addClass(C); //Сменим сторону окна
+      if(!C[7]) {//Несменили сторону, оставим как было
+        C+=S[7]
+      }
+      
+      if(Tx || j[2]){//Сменили сторону B/T || L/R
+        d.removeClass(S) //Удалим сторону окна B/T
+         .addClass(C)
+      }
+      console.debug('Сторона поивления = Было:',S, '. Стало:',C);
     }
-
+    
     d.addClass( //Откроем окно
-      'zONasO' + (B || d.width() < 40 //Смещение окна || Когда маленькая кнопка
-        ? i ? 'i' //Маленькая стрелка
-            :'m' //Стрелка по центру кнопки 
+      'zONasO' + (B || KW < 40//Смещение окна || Когда маленькая кнопка
+        ? 'm'+(i ? i==1?'i':'ik'//Маленькая стрелка 1=По центру, 2=С краю
+            :'')//Стрелка по центру кнопки 
         : '')
     );
-    /*
-    let n2 = n.offset(),
-      L2 = Math.round(n2.left),
-      T2 = Math.round(n2.top),
-      
-      W2 = Math.round(n.outerWidth()), //Размер всплыв окна + отступ
-      H2 = Math.round(n.outerHeight()),
-  
-      LW2 = Math.round(L2 + W2), //До окна + окно = горизонт
-      TH2 = Math.round(T2 + H2);
-  
-    console.info('START---------------- После открытия:');
-    console.debug('o.left: ' + L2 + ', o.top: ' + T2 + ' <= Координаты до окна');
-    console.debug('W: ' + W2 + ', H: ' + H2 + ' <= Размер окна');
-    console.debug('LW: ' + LW2 + ', TH: ' + TH2 + ' <= До окна + окно');
-    console.debug('С права до окна: ' + (w - LW2));
-    console.info('------------------------------');
-    */
   },
   D: (d, O) => { //zONas.D(d,O);//click вне окна //d=$(Окно), O=zONas.
     //console.debug('Установим document', d.has(e.target));

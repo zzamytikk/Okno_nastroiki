@@ -39,45 +39,51 @@
       }
     </style>
     
-    <!-- <div id="radio" class="zONas-TL">
-      <div class="B-i-CR all-c1">
-        <input class="zonasb" type="radio" name="stxt" value="1" checked>
-        <s></s>
-        <b>value 1</b>
+    <div style="position:absolute;top:5px;left:6px; borderq: 1px solid red;">
+      <div class="zONas-BR all-c4">
+        <button>i</button><div><div></div></div>
+      </div><br>
+      <div class="zONas-BL all-c4">
+        <button>iiii</button><div><div></div></div>
+      </div><br>
+      <div class="zONas-BR all-c4">
+        <button>zONas-BR</button><div><div></div></div>
+      </div><br>
+      <div class="zONas-BL all-c4">
+        <button>zONas-BL</button><div><div></div></div>
       </div>
-      <div><div></div></div>
+    </div>
+    <div style="position:absolute;top:40px; left: 50%;transform: translateX(-50%);">
+      <div class="zONas-TL all-c4">
+        <button>zONas-TL</button><div><div></div></div>
+      </div> 
+      <div class="zONas-TR all-c4">
+        <button>zONas-TR</button><div><div></div></div>
+      </div>
+    </div>
+    <div style="position:absolute;top:5px;right:6px; borderf: 1px solid red; text-align: right">
+      <div class="zONas-BL all-c4">
+        <button>i</button><div><div></div></div>
+      </div>
+      <br>
+      <div class="zONas-BR all-c4">
+        <button>zONas-BR</button><div><div></div></div>
+      </div><br>
+      <div class="zONas-BL all-c4">
+        <button>zONas-BL</button><div><div></div></div>
+      </div>
     </div>
     
-    <div id="radio2" class="zONas-TL">
-      <div class="B-i-CR all-c1">
-        <input class="zonasb" type="radio" name="stxt" value="2">
-        <s></s>
-        <b>value 2</b>
+    <div style="display:none; z-index:3;position:fixed;bottom:41px; left:50%;transform: translateX(-50%);">
+      <div class="zONas-BL all-c4">
+        <button>zONas-BL</button><div><div></div></div>
+      </div> 
+      <div class="zONas-BR all-c4">
+        <button>zONas-BR</button><div><div></div></div>
       </div>
-      <div><div></div></div>
-    </div> -->
-    
-    <div class="ubrRam zONas-BL all-c4">
-        <button>ii</button>
-        <div><div>
-          <pre id="cod" class="ram-n0 all-c5" style="margin: 0"><code class="v-BG0">
-                &lt;div class="zONas-TL all-c4">
-                &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-                &nbsp; &lt;div>&lt;div>
-                &nbsp; &nbsp; Текст..
-                &nbsp; &lt;/div>&lt;/div>
-                &lt;/div>
-          </code></pre> 
-        </div></div>
-      </div>
-    <div id="svoi" class="zONas-TL">
-      <div><button but>Загрузка</button></div>
-      <div><div></div></div>
     </div>
-    <div id="svoi2" class="zONas-TR" style="float:right;">
-      <div><a id="zonasb" href="">pjuщ</a></div>
-      <div><div></div></div>
-    </div>
+    <br>
+    <div style="margin:32px 0"></div>
     
     <fieldset class="ubrRam all-c3 v-BG0">
       <legend>Тестируем</legend>
@@ -633,10 +639,7 @@
       </div>
       <div class="zONas-BL all-c4">
         <button>BL пуст</button>
-        <div><div>
-          
-          
-        </div></div>
+        <div><div></div></div>
       </div>
       <div class="zONas-BR all-c4">
         <button>BRBRBR</button>
@@ -754,6 +757,37 @@
                 &lt;/div>
           </code></pre> 
         </div></div>
+      </div>
+    </fieldset>
+    
+    <fieldset class="all-c3 v-BG0">
+      <legend>Тестируем</legend>
+      
+      <div class="zONas-TL all-c1">
+        <div class="B-i-CR all-c1">
+          <input class="zonasb" type="radio" name="stxt" value="1" checked>
+          <s></s>
+          <b>zONas-TL</b>
+        </div>
+        <div><div></div></div>
+      </div>
+      <div class="zONas-BL all-c1">
+        <div class="B-i-CR all-c1">
+          <input class="zonasb" type="radio" name="stxt" value="2">
+          <s></s>
+          <b>BL</b>
+        </div>
+        <div><div></div></div>
+      </div>
+      
+      <div id="svoi" class="zONas-TL">
+        <div><button but>fun ajax Загрузка</button></div>
+        <div><div></div></div>
+      </div>
+      
+      <div id="svoi2" class="zONas-TR">
+        <div><button but>func Содержание</button></div>
+        <div><div></div></div>
       </div>
     </fieldset>
     
@@ -1102,7 +1136,7 @@
       &nbsp; &lt;/div>
       &lt;/div>
       </code></pre>
-    </div> 
+    </div>
   </main>
 
   <script>
@@ -1137,18 +1171,6 @@
         }
       });//ajax
       
-      /* zONas.$({
-        id: 'radio',
-        F: (d, b, N) => {
-          zONas.L(d, b, N, 'Содержание');
-        }
-      });
-      zONas.$({
-        id: 'radio2',
-        F: (d, b, N) => {
-          zONas.L(d, b, N, 'Содержание');
-        }
-      });*/
       zONas.$({
         id: 'svoi2',
         F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
