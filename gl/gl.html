@@ -1064,6 +1064,39 @@
     
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 3:</b></h4>
     <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
+    &lt;div id="svoi2" class="zONas-TL all-c4">
+    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+    &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
+    &lt;/div>
+    
+    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+    &lt;script>
+    &nbsp; document.addEventListener('DOMContentLoaded', () => {
+    &nbsp; &nbsp; //Поиск по &lt;div id="svoi2"
+    &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
+    &nbsp; &nbsp; &nbsp; id: 'svoi2', //Путь до &lt;div id="svoi2" class="zONas-
+    
+    &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
+    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+    &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
+    &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
+    
+    &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
+    &nbsp; &nbsp; &nbsp; &nbsp; $('#over').css('overflow', 'unset');//Добавим видимость
+    &nbsp; &nbsp; &nbsp; },
+    
+    &nbsp; &nbsp; &nbsp; Fx: d => {//Своя функция (Сработает при закрытии окна)
+    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+
+    &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
+    &nbsp; &nbsp; &nbsp; }
+    &nbsp; &nbsp; });
+    &nbsp; });
+    &lt;/script>
+    </code></pre>
+    
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 4:</b></h4>
+    <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
     &lt;div id="svoi3" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
     &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
@@ -1179,6 +1212,11 @@
           //b = <button
           //N = Содержания окна
           zONas.L(d, b, N, 'Содержание');
+          d.css('background','red')
+        },
+        Fx: d => {
+          d.removeAttr('style');
+          console.debug('Fx');
         }
       });//Просто текст
       setTimeout(() => {//Загрузка сайта

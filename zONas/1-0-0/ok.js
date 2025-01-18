@@ -3,52 +3,11 @@
     © Copyright Плюшки для сайтов 2024
 */
 var zONas = { //Всплывающее окно `Настройки/Разное`
-  /* <div class="zONas-TL all-c4">
-       <button>button</button><!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-       <div><div>Текст..</div></div>
-     </div>
-  */
-
-  /*  //Запускает поиск всех class="zONas-.." (Кроме тех у которых установлен id="svoi"):
-      zONas.$();//★ Запускаем Всплывающее окно `Настройки/Разное`
-       
-        || • Вариант 2:
-      zONas.$({//★ Запускаем индивидуально для подгруза через $.ajax
-        id: 'svoi', //Путь до <div id="svoi" class="zONas-
-        
-        F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
-          //Путь $() до: 
-          //d = <div id="svoi" class="zONas-
-          //b = <button
-          //N = Содержания окна
-          
-          $.ajax({
-            url: '/testAjax.html',    //Куда отправить запрос.
-            dataType: 'html',         //Тип данных в ответе (xml, json, script, html).
-            success: function(htm){   //Функция которая будет выполнена после успешного запроса.
-        	   //Тут можно обработать до вывода: htm = htm.replace(/удали меня/,'');
-        	   zONas.L(d, b, N, htm);   //Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
-            }
-          });
-        }
-      });
-      
-        || • Вариант 3:
-      zONas.$({
-        id: 'svoi2',
-        F: (d, b, N) => { //Своя функция (Сработает при открытии окна)
-          //Пути $() до: 
-          //d = <div id="svoi" class="zONas-
-          //b = <button
-          //N = Содержания окна
-          zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
-        }
-      });
-  */
   N: {
     o: 4 //Отступ от стенок
   },
   iB: '>button:eq(0),>:eq(0) button,#zonasb,.zonasb', //Путь до кнопки: .find('>button:eq(0),>:eq(0) button'))
+  //zONas.$();//★ Запускаем Всплывающее окно `Настройки/Разное`
   //F:1,//1 = Запрет на открытие окна. (Идёт ожидание ответа от function, загрузка другова окна)
   $: (q = {}) => { //Вешаем click
     let O = zONas,
@@ -66,8 +25,11 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               if (O.F) { //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
                 return
               }
+              if(typeof q?.Fx == 'function'){//Пользовательская function
+                O.Fx = q.Fx;
+              }
              
-              O.C($(e.currentTarget), q?.F);
+              O.C($(e.currentTarget), q);
             });
           } else {
             console.debug('Была попытка повторного запуска скрипта zONas.$(click.zONas);', e);
@@ -83,10 +45,10 @@ var zONas = { //Всплывающее окно `Настройки/Разное
   },
   /* zONas.C(//Обработка
        $(),//id окна
-       F   //function zONas.$({F: () => {}});
+       q   //function zONas.$({F: () => {}},||Fx: () => {});
      );
   */
-  C: (b, F) => { //Обработка click 'b = button'
+  C: (b, q) => { //Обработка click 'b = button'
     let c, O = zONas,
       d = b.closest('[class*="zONas-"]');//Вокруг кнопки
 
@@ -97,8 +59,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       
       let X, N;
       
-      if ((X = $('[class*="zONas-"]'))[0]) { //Нашли открытое окно!
-        O.X(X); //Закроем окно
+      if ((X = $('[class*="zONasO"'))[0]) { //Нашли открытое окно!
+        O.X(X);//Закроем окно
       }
 
       N = d.find('>div').eq(-1);//Содержание +ещё .find('>div');
@@ -107,7 +69,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
       }
 
-      if (typeof F == 'function') { //Начали обработку function
+      if (typeof q?.F == 'function') { //Начали обработку function
         O.F = 1;
         //console.debug('Начали обработку function');
         d.addClass('zONasL'); //Добавим загрузку
@@ -118,7 +80,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
           d.removeClass('zONasL'); //Уберём загрузку
           O.F = 0; //Убераем запрет на открытие окна.
         }, 15000);
-        F(d, b, N.find('>div'));
+        q.F(d, b, N.find('>div'));
         return;
       }
 
@@ -134,6 +96,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       }
     }
   },
+  //O.Fx: q.Fx,//Пользовательская function 
+  //d = $('[class*="zONas-"]')
   X: d => { //O.X(d);//Закроем окно
     let O = zONas;
     //console.debug('O.X(d); Закроем окно', d, O.db);
@@ -141,6 +105,12 @@ var zONas = { //Всплывающее окно `Настройки/Разное
     if (O.db) {
       O.db.disconnect(); //Удалим слежку за окном браузера
       O.db = 0;
+    }
+    
+    if(O.Fx){//Пользовательская function
+      O.Fx(d);
+      delete O.Fx;
+      //console.debug('O.Fx', O.Fx);
     }
 
     $(document).off('.zONas'); //† Удалим click вне элемента
