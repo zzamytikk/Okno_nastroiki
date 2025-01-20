@@ -51,8 +51,7 @@
   --Ct: #ccc;  /* текст */
 }
 
-[class*="zONas-"],
-[class*="zONas-"] *, [class*="zONas-"] *::after {/* Помогает интеграции */
+[class*="zONas-"], [class*="zONas-"] > *:last-child, [class*="zONas-"] > *:last-child > * {
   position: relative;
   margin: 0;
   padding: 0;
