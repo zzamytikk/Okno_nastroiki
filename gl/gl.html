@@ -789,6 +789,11 @@
         <div><button but>func Содержание</button></div>
         <div><div></div></div>
       </div>
+      
+      <div class="zONas-TR zONasNet">
+        <div><button but>.zONasNet Не закрывать окно</button></div>
+        <div><div>ок</div></div>
+      </div>
     </fieldset>
     
     <h4 class="hr-n1 hr-L all-c0"><b>Презентация:</b></h4>
@@ -926,10 +931,16 @@
     </fieldset>
     
     <div class="ram-V0 ram-V2 gI-inf all-c2"><div>
-      <u>Авто корекция:</u>
+      <u>ИИ корекция</u>:
       <ul class="ram-V0 all-c8">
-        <li>Относительно краёв окна (Горизонтально/Вертикально)</li>
-        <li>При изменении краёв <u>браузер окна</u> или поворот телефона (Горизонтально, Вертикально)</li>
+        <li>Относительно стенок окна (Горизонтально/Вертикально)</li>
+        <li>При изменении размера <u>браузер окна</u> или поворот телефона (Горизонтально, Вертикально)</li>
+      </ul>
+      <u>Доп информация</u>:
+      <ul class="ram-V0 all-c8">
+        <li><b>zONas.O.o = 8;</b> Задаём свой отступ от стенок. (По умолчанию 4)</li>
+        <li><b>zONas.$();</b> поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."</li>
+        <li><b>class="zONasNet"</b> Установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button)</li>
       </ul>
     </div></div>
     
@@ -1037,6 +1048,7 @@
     </code></pre>
     
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 2:</b></h4>
+    <p>Своя функция с выводом своего содержания окна</p>
     <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
     &lt;div id="svoi2" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1063,6 +1075,7 @@
     </code></pre>
     
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 3:</b></h4>
+    <p>Своя функция после закрытия окна</p>
     <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
     &lt;div id="svoi2" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1127,7 +1140,28 @@
     &nbsp; });
     &lt;/script>
     </code></pre>
+
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 5:</b></h4>
+    <p><span class="cod-scb">class</span>="<u class="u-n0 all-c1">zONasNet</u>" установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button)</p>
+    <pre id="cod" class="ram-n0 all-c5" data-ram-zag="HTML"><code class="v-BG0">
+    &lt;div class="zONas-TL zONasNet all-c4">
+    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+    &nbsp; &lt;div>&lt;div>
+    &nbsp; &nbsp; Ваш текст тут..
+    &nbsp; &lt;/div>&lt;/div>
+    &lt;/div>
     
+    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+    &lt;script>
+    &nbsp; document.addEventListener('DOMContentLoaded', () => {
+    &nbsp; &nbsp; //zONas.O.o = 8;//Задаём свой отступ от стенок. (По умолчанию 4)
+    &nbsp; &nbsp; //zONas.$(); поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."
+    &nbsp; &nbsp; zONas.$();//★ Запускаем Всплывающее окно (Настройки/Разное)
+    &nbsp; });
+    &lt;/script>
+    </code></pre>
+    
+
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для тёмного сайта:</b></h4>
     <pre class="ram-n0 all-c5" data-ram-zag="HTML" id="cod"><code class="v-BG0">
     &lt;!-- Необходимо добавить в body class="temaT" -->
@@ -1214,6 +1248,7 @@
           zONas.L(d, b, N, 'Содержание');
           d.css('background','red')
         },
+        
         Fx: d => {
           d.removeAttr('style');
           console.debug('Fx');
