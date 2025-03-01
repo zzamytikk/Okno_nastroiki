@@ -14,11 +14,14 @@ var zONas = { //Всплывающее окно `Настройки/Разное
     let O = zONas,
       on = id => { //Вешаем click
         //console.debug('each', id);
+        if(!q.ON) {
+          q.ON = 'click'
+        }
         id.each((i, e) => {
           if(O.proNS(//Проверка namespace
               e, //event
-              'zONas'//Какой ключь(namespace) ищим
-              //undefined = click
+              'zONas',//Какой ключь(namespace) ищим
+              q.ON //$.on('input.cod'); undefined = click
             )//return true = Ненашли ключ, false = нашли!
           ){
             if (typeof q?.Fx == 'function') { //Пользовательская function
@@ -26,11 +29,11 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
               //console.debug('Добавили функцию O.Fx('+(O.Fx.length-1)+'): ', O.Fx);
             }
-            
-            $(e).on('click.zONas', e => {
+            console.debug(q.ON, q.ON.replace(new RegExp('[a-z]+', 'gi'),'$&.zONas')); 
+            $(e).on(q.ON.replace(new RegExp('[a-z]+', 'gi'), '$&.zONas'), e => {
               if ($(e.currentTarget)[0].nodeName == 'A') { e.preventDefault(); } //отменить выполнение действия для <a
               if (O.F) {return} //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
-             
+             console.debug('click.zONas'); 
               O.C($(e.currentTarget), q);
             });
           } else {
@@ -53,8 +56,9 @@ var zONas = { //Всплывающее окно `Настройки/Разное
   C: (b, q) => { //Обработка click 'b = button'
     let c, O = zONas,
       d = b.closest('[class*="zONas-"]');//Вокруг кнопки
-
+    console.debug('C(); Начало', q);
     if (/zONasO/.test(c = d.attr('class'))) { //Окно открыто `Закрываем`
+      console.debug('Нашли .zONasO, закроем');
       O.X(d); //Закроем окно
     } else { //Открываем
       clearTimeout(O.T2); //Слежка за размером браузер окна
@@ -63,6 +67,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       
       if ((X = $('[class*="zONasO"]:not(.zONasNet)'))[0]) { //Нашли открытое окно!
         O.X(X);//Закроем окно
+        console.debug('Закроеи все открытые X:',X); 
       }
 
       N = d.find('>div').eq(-1);//Содержание +ещё .find('>div');
@@ -85,7 +90,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         q.F(d, b, N.find('>div'));
         return;
       }
-      //console.debug('x:', x); 
+      console.debug('Откроем. x('+(x?'З':'Не з')+'акрывать при нажатии вне окна):', x);
       if(x) {//Не закрывать при нажатии вне окна
         O.D(d, O); //click вне окна
       }
@@ -117,7 +122,9 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       //console.debug('.X(), Запустили O.Fx['+id+']', O.Fx);
     }
     
-    $(document).off('.zONas'); //† Удалим click вне элемента
+    if(!d.is('.zONasNet')) {//Установлено
+      $(document).off('.zONas'); //† Удалим click вне элемента
+    }
     d.removeClass('zONasO zONasOm zONasL zONasOmi zONasOmik'); //† Закрываем
     d.find('>div').removeAttr('style'); //удаляем
   },

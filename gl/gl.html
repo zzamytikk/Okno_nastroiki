@@ -936,11 +936,22 @@
         <li>Относительно стенок окна (Горизонтально/Вертикально)</li>
         <li>При изменении размера <u>браузер окна</u> или поворот телефона (Горизонтально, Вертикально)</li>
       </ul>
+    </div></div>
+    
+    <div class="ram-V0 ram-V2 gI-inf all-c2"><div style="--zHid:6ex; --zHidC:#0000" zhid="1">
+      <u>Список всех переменных</u>:<button zhidb><p><s></s></p></button>
+      <ul class="ram-V0 all-c8">
+        <li><b>id: 'svoi2'</b> путь до &lt;div id="svoi2" class="zONas-</li>
+        <li><b>ON: 'keyup'</b> сменим обработку событий $.on('keyup.zONas');</li>
+        <li><b>ON: undefined</b> по умолчанию $.on('click.zONas');</li>
+        <li><b>F: (d, b, N) => {}</b> своя функция (Сработает при открытии окна)</li>
+        <li><b>Fx: d => {}</b> своя функция (Сработает при закрытии окна)</li>
+      </ul>
       <u>Доп информация</u>:
       <ul class="ram-V0 all-c8">
-        <li><b>zONas.O.o = 8;</b> Задаём свой отступ от стенок. (По умолчанию 4)</li>
-        <li><b>zONas.$();</b> поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."</li>
-        <li><b>class="zONasNet"</b> Установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button)</li>
+        <li><b>zONas.O.o = 8;</b> задаём свой отступ от стенок. (По умолчанию 4)</li>
+        <li><b>zONas.$();</b> поиск всех(для запуска) &lt;div class="zONas-, если не установлен &lt;div id=".."</li>
+        <li><b>class="zONasNet"</b> установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button)</li>
       </ul>
     </div></div>
     
@@ -1109,6 +1120,7 @@
     </code></div></pre>
     
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 4:</b></h4>
+    <p>Обработка $.ajax(); + смена обработки событий keyup, input,..</p>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;div id="svoi3" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1121,6 +1133,8 @@
     &nbsp; &nbsp; //Поиск по &lt;div id="svoi3"
     &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
     &nbsp; &nbsp; &nbsp; id: 'svoi3', //Путь до &lt;div id="svoi3" class="zONas-
+    &nbsp; &nbsp; &nbsp; ON: 'keyup', //Сменим обработку событий $.on('keyup.zONas');
+    &nbsp; &nbsp; &nbsp; //ON: undefined, //По умолчанию $.on('click.zONas');
     
     &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
     &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi3" class="zONas-
@@ -1161,7 +1175,6 @@
     &lt;/script>
     </code></div></pre>
     
-
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для тёмного сайта:</b></h4>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;!-- Необходимо добавить в body class="temaT" -->
