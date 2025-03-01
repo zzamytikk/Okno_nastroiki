@@ -9,7 +9,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
   iB: '>button:eq(0),>:eq(0) button,#zonasb,.zonasb', //Путь до кнопки: .find('>button:eq(0),>:eq(0) button'))
   //zONas.$();//★ Запускаем Всплывающее окно `Настройки/Разное`
   //F:1,//1 = Запрет на открытие окна. (Идёт ожидание ответа от function, загрузка другова окна)
-  //Fx: () => {},//Пользовательская function, при закрытии
+  Fx: [],//Пользовательская function, при закрытии
   $: (q = {}) => { //Вешаем click
     let O = zONas,
       on = id => { //Вешаем click
@@ -21,14 +21,15 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               //undefined = click
             )//return true = Ненашли ключ, false = нашли!
           ){
+            if (typeof q?.Fx == 'function') { //Пользовательская function
+              O.Fx.push(q.Fx); delete q.Fx;
+              $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
+              //console.debug('Добавили функцию O.Fx('+(O.Fx.length-1)+'): ', O.Fx);
+            }
+            
             $(e).on('click.zONas', e => {
               if ($(e.currentTarget)[0].nodeName == 'A') { e.preventDefault(); } //отменить выполнение действия для <a
-              if (O.F) { //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
-                return
-              }
-              if(typeof q?.Fx == 'function'){//Пользовательская function
-                O.Fx = q.Fx;
-              }
+              if (O.F) {return} //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
              
               O.C($(e.currentTarget), q);
             });
@@ -84,7 +85,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         q.F(d, b, N.find('>div'));
         return;
       }
-
+      //console.debug('x:', x); 
       if(x) {//Не закрывать при нажатии вне окна
         O.D(d, O); //click вне окна
       }
@@ -102,20 +103,20 @@ var zONas = { //Всплывающее окно `Настройки/Разное
   //d = $('[class*="zONas-"]')
   //o = 1 - Временное закрытие и открытие окна, после изменения размеров браузер окна. Для отмены запуска Fx() - пользовательская function
   X: (d, o) => { //O.X(d);//Закроем окно
-    let O = zONas;
+    let O = zONas, id=d.attr('data-zonas');
     //console.debug('O.X(d); Закроем окно', d, O.db);
+    //console.debug(d.attr('class'), d.attr('id')); 
     clearTimeout(O.T2); //Слежка за размером браузер окна
     if (O.db) {
       O.db.disconnect(); //Удалим слежку за окном браузера
       O.db = 0;
     }
-    
-    if(!o && O.Fx){//Пользовательская function
-      O.Fx(d, o);
-      if(!o) {delete O.Fx}//Временно записывается в пространстве для всех окон
-      //console.debug('O.Fx', O.Fx);
+    //console.debug('O.Fx['+id+']:', O.Fx[id]); 
+    if(!o && O.Fx[id]){//Пользовательская function
+      O.Fx[id](d);
+      //console.debug('.X(), Запустили O.Fx['+id+']', O.Fx);
     }
-
+    
     $(document).off('.zONas'); //† Удалим click вне элемента
     d.removeClass('zONasO zONasOm zONasL zONasOmi zONasOmik'); //† Закрываем
     d.find('>div').removeAttr('style'); //удаляем
@@ -311,7 +312,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
           if (O.R && d[0]) { //Закроем
             //console.log('O.oko() Спрячим/Откроем');
             O.X(d, 1); //Закроем окно 1=оповестим Пользовательскую Fx=function, что закрыли из Слежка за размерами браузер окна
-
+            
             clearTimeout(O.T2);
             O.T2 = setTimeout(() => {
               O.C(d.find(O.iB)); //Откроем
