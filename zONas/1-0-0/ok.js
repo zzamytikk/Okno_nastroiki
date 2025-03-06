@@ -29,11 +29,11 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
               //console.debug('Добавили функцию O.Fx('+(O.Fx.length-1)+'): ', O.Fx);
             }
-            console.debug(q.ON, q.ON.replace(new RegExp('[a-z]+', 'gi'),'$&.zONas')); 
+            //console.debug(q.ON, q.ON.replace(new RegExp('[a-z]+', 'gi'),'$&.zONas')); 
             $(e).on(q.ON.replace(new RegExp('[a-z]+', 'gi'), '$&.zONas'), e => {
               if ($(e.currentTarget)[0].nodeName == 'A') { e.preventDefault(); } //отменить выполнение действия для <a
               if (O.F) {return} //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
-             console.debug('click.zONas'); 
+              //console.debug('click.zONas'); 
               O.C($(e.currentTarget), q);
             });
           } else {
