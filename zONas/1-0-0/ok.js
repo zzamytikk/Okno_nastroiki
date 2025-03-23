@@ -44,7 +44,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
 
     on( //Вешаем click (Путь до <button):
       q.id //По id="svoi"
-        ? $('#' + q.id.replace('#', '')).find(O.iB)
+        ? $('body #' + q.id.replace('#', '')).find(O.iB)
         : $('[class*="zONas-"]').not('[id]').find(O.iB) //Поиск всех
     )
   },
