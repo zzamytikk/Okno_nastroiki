@@ -46,7 +46,7 @@
 }
 /* ✦ --all- .all-c.. Цвета ✦ *//* #endregion */
 
-.temaT [class*="zONas-"] {
+.temaT {
   --bg: #012;  /* background Фон сайта */
   --Ct: #ccc;  /* текст */
 }
