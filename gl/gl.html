@@ -759,7 +759,7 @@
         </div></div>
       </div>
     </fieldset>
-    
+    <!-- #svoi, fun ajax Загрузка -->
     <fieldset class="all-c3 v-BG0">
       <legend>Тестируем</legend>
       
@@ -781,12 +781,12 @@
       </div>
       
       <div id="svoi" class="zONas-TL">
-        <div><button but>fun ajax Загрузка</button></div>
+        <div><button but>svoi fun ajax Загрузка</button></div>
         <div><div></div></div>
       </div>
       
       <div id="svoi2" class="zONas-TR">
-        <div><button but>func Содержание</button></div>
+        <div><button but>svoi2 func Содержание</button></div>
         <div><div></div></div>
       </div>
       
@@ -1062,8 +1062,8 @@
     &lt;/script>
     </code></div></pre>
     
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 2:</b></h4>
-    <p>Своя функция с выводом своего содержания окна</p>
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 2</b></h4>
+    <p>Своя функция с выводом содержания окна:</p>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;div id="svoi2" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1089,8 +1089,8 @@
     &lt;/script>
     </code></div></pre>
     
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 3:</b></h4>
-    <p>Своя функция после закрытия окна</p>
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 3</b></h4>
+    <p>Своя функция сработает после закрытия окна и своя функция сработает после изменения размера браузер окна:</p>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;div id="svoi2" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1118,13 +1118,19 @@
 
     &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
     &nbsp; &nbsp; &nbsp; }
+    
+    &nbsp; &nbsp; &nbsp; oF: d => {//Своя функция (Сработает после изменения размера браузер окна)
+    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+
+    &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
+    &nbsp; &nbsp; &nbsp; }
     &nbsp; &nbsp; });
     &nbsp; });
     &lt;/script>
     </code></div></pre>
     
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 4:</b></h4>
-    <p>Обработка $.ajax(); + смена обработки событий keyup, input,..</p>
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 4</b></h4>
+    <p>Обработка $.ajax(); + смена обработки событий keyup, input,..:</p>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;div id="svoi3" class="zONas-TL all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1159,8 +1165,8 @@
     &lt;/script>
     </code></div></pre>
 
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 5:</b></h4>
-    <p><span class="cod-scb">class</span>="<u class="u-n0 all-c1">zONasNet</u>" установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button)</p>
+    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 5</b></h4>
+    <p><span class="cod-scb">class</span>="<u class="u-n0 all-c1">zONasNet</u>" установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button):</p>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;div class="zONas-TL zONasNet all-c4">
     &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
@@ -1178,7 +1184,7 @@
     &nbsp; });
     &lt;/script>
     </code></div></pre>
-    
+
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для тёмного сайта:</b></h4>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;!-- Необходимо добавить в body class="temaT" -->
@@ -1269,8 +1275,13 @@
         Fx: d => {
           d.removeAttr('style');
           console.debug('.html Fx');
+        },
+        
+        oF: d => {
+          console.debug('oF()');
         }
       });//Просто текст
+      
       setTimeout(() => {//Загрузка сайта
         e.style.width=0;
         e.style.background='#0b0';
@@ -1279,58 +1290,3 @@
   </script>
 </body>
 </html>
-<!--
-    <fieldset class="all-c1">
-        <legend>Панель управления</legend>
-        текст
-    </fieldset>
-    &nbsp;	Неразрывный пробел
-< 	&lt;	  Знак "меньше чем" (начало тега)
->	  &gt;	  Знак "больше чем" (конец тега)
-"	  &quot;	Двойная кавычка
-' 	&apos;	Апостроф (одинарная кавычка)
-•   &bull;
--->
-<!-- +HTML:
-    100% для мах 1 блока в ряд:
-    <div class="flex-w">
-        <div>1</div>
-    </div>
-------------------------
-    50% для мах 2 блоков в ряд:
-    <div class="flex-w" style="---flexW:50%">
-        <div>1</div>
-        <div>2</div>
-    </div>
------------------------
-    33.3% для мах 3 блоков в ряд:
-    <div class="flex-w" style="---flexW:33.3%">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-    </div>
------------------------
-    25% для мах 4 блоков в ряд:
-    <div class="flex-w" style="---flexW:25%">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-    </div>
-
-    =========================
-
-    <style> Разтяним на всё
-        .flex-w {
-            height: 100%;
-        }
-        .flex-w > * {
-            padding: 3px;
-        }
-        .flex-w button {
-            width: 100%;
-            height: calc(100% - 1.9rem);
-            font-size: var(---med-B-20-22-26);
-        }
-    </style>
--->

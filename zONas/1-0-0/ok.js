@@ -24,8 +24,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               q.ON //$.on('input.cod'); undefined = click
             )//return true = Ненашли ключ, false = нашли!
           ){
-            if (typeof q?.Fx == 'function') { //Пользовательская function
-              O.Fx.push(q.Fx); delete q.Fx;
+            if (typeof q.Fx == 'function' || typeof q.oF == 'function') { //Пользовательская function
+              O.Fx.push([q.Fx, q.oF]); delete q.Fx; delete q.oF;
               $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
               //console.debug('Добавили функцию O.Fx('+(O.Fx.length-1)+'): ', O.Fx);
             }
@@ -37,7 +37,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
               O.C($(e.currentTarget), q);
             });
           } else {
-            console.debug('Была попытка повторного запуска скрипта zONas.$(click.zONas);', e);
+            //console.debug('Была попытка повторного запуска скрипта zONas.$(click.zONas);', e);
           }
         });
       };
@@ -56,9 +56,10 @@ var zONas = { //Всплывающее окно `Настройки/Разное
   C: (b, q) => { //Обработка click 'b = button'
     let c, O = zONas,
       d = b.closest('[class*="zONas-"]');//Вокруг кнопки
-    console.debug('C(); Начало', q);
+    
+    //console.debug('C(); Начало', q);
     if (/zONasO/.test(c = d.attr('class'))) { //Окно открыто `Закрываем`
-      console.debug('Нашли .zONasO, закроем');
+      //console.debug('Нашли .zONasO, закроем');
       O.X(d); //Закроем окно
     } else { //Открываем
       clearTimeout(O.T2); //Слежка за размером браузер окна
@@ -67,7 +68,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       
       if ((X = $('[class*="zONasO"]:not(.zONasNet)'))[0]) { //Нашли открытое окно!
         O.X(X);//Закроем окно
-        console.debug('Закроеи все открытые X:',X); 
+        //console.debug('Закроеи все открытые X:',X); 
       }
 
       N = d.find('>div').eq(-1);//Содержание +ещё .find('>div');
@@ -75,7 +76,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       if ((N.find('>div').html() || '').replace(/[\r\n\t ]/g, '').length == 0) {
         N.find('>div').html('<font color="red">Содержание отсутствует!</font>')
       }
-
+      
       if (typeof q?.F == 'function') { //Начали обработку function
         O.F = 1;
         //console.debug('Начали обработку function');
@@ -90,11 +91,12 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         q.F(d, b, N.find('>div'));
         return;
       }
-      console.debug('Откроем. x('+(x?'З':'Не з')+'акрывать при нажатии вне окна):', x);
+      //console.debug('Откроем. x('+(x?'З':'Не з')+'акрывать при нажатии вне окна):', x);
       if(x) {//Не закрывать при нажатии вне окна
         O.D(d, O); //click вне окна
       }
-      O.O(d, O); //Отслеживаем изменения размера браузер окна
+      
+      O.O(d, O, O.Fx[d.attr('data-zonas')][1]); //Отслеживаем изменения размера браузер окна
       O.w(d, N, c); //Сменим направление
 
       if (O.F) { //Обработали function. (Загрузили и показали в окне)
@@ -107,7 +109,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
   },
   //d = $('[class*="zONas-"]')
   //o = 1 - Временное закрытие и открытие окна, после изменения размеров браузер окна. Для отмены запуска Fx() - пользовательская function
-  X: (d, o) => { //O.X(d);//Закроем окно
+  X: (d, o) => { //Закроем окно
     let O = zONas, id=d.attr('data-zonas');
     //console.debug('O.X(d); Закроем окно', d, O.db);
     //console.debug(d.attr('class'), d.attr('id')); 
@@ -116,10 +118,10 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       O.db.disconnect(); //Удалим слежку за окном браузера
       O.db = 0;
     }
-    //console.debug('O.Fx['+id+']:', O.Fx[id]); 
-    if(!o && O.Fx[id]){//Пользовательская function
-      O.Fx[id](d);
-      //console.debug('.X(), Запустили O.Fx['+id+']', O.Fx);
+    //console.debug('O.Fx['+id+'][0]:', O.Fx[id][0]); 
+    if(!o && O.Fx[id][0]){//Пользовательская function
+      O.Fx[id][0](d);
+      //console.debug('.X(), Запустили O.Fx['+id+'][0]', O.Fx);
     }
     
     if(!d.is('.zONasNet')) {//Установлено
@@ -291,7 +293,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         : '')
     );
   },
-  D: (d, O) => { //zONas.D(d,O);//click вне окна //d=$(Окно), O=zONas.
+  //d=$(Окно), O=zONas.
+  D: (d, O) => {//click вне окна
     //console.debug('Установим document', d.has(e.target));
     $(document).on('click.zONas', e => { //Клик вне элемента $()
       //console.debug('click из document');
@@ -301,9 +304,10 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       }
     });
   },
-  //T2:0,//clearTimeout
-  //R: 0, //width Последний размер Браузер окна
-  O: (d, O) => { //zONas.O(d,O);//Отслеживаем изменения размера браузер окна  //d=$(Окно), O=zONas.
+  /*T2:0,//clearTimeout
+    R: 0, //width Последний размер Браузер окна
+    d=$(Окно), O=zONas., f=() => {}*/
+  O: (d, O, f) => {//Отслеживаем изменения размера браузер окна
     clearTimeout(O.T2);
     O.T2 = setTimeout(() => { //Убераем проблему input[text] (При первом нажатии появитса клавиатура и сработает Закрыть-Открыть)
       O.oko(m => {
@@ -323,6 +327,7 @@ var zONas = { //Всплывающее окно `Настройки/Разное
             clearTimeout(O.T2);
             O.T2 = setTimeout(() => {
               O.C(d.find(O.iB)); //Откроем
+              if(f){f(d)}//функция сработает при изменение браузер экрана
               O.R = W; //Обновим
             }, 500);
           }
@@ -340,8 +345,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         m
       );
   }); */
-  //db: //Установили слежку/Удалили
-  oko: f => { //zONas.db.disconnect();
+  //db: //Установили слежку/Удалили. Закрыть: zONas.db.disconnect();
+  oko: f => {
     let M = window.ResizeObserver; //Отслеживаем изменения размера окна
     //console.debug('oko(); Вешаем око');
     if (typeof M !== 'undefined') {
@@ -359,7 +364,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       'input'//$.on('input.cod'); undefined = click
     );//return true = Ненашли ключ, false = нашли!
   */
-  proNS: (e, P, c = 'click') => { //Ищим .cod, установленный: `$.on('click.cod', () => {})`
+  //Ищим .cod, установленный: `$.on('click.cod', () => {})`
+  proNS: (e, P, c = 'click') => {
     let d = $._data($(e)[0], 'events')?.[c];
 
     //console.debug('Нашли запись: if(' + (d && d[0].namespace) + ').', d);
