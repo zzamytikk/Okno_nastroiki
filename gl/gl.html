@@ -932,7 +932,7 @@
       </div>
     </fieldset>
     
-    <div class="ram-V0 ram-V2 gI-inf all-c2"><div>
+    <div class="ram-V0 ram-V2 gI-vzm all-c3"><div>
       <u>ИИ корекция</u>:
       <ul class="ram-V0 all-c8">
         <li>Относительно стенок окна (Горизонтально/Вертикально)</li>
@@ -949,6 +949,7 @@
           <li><b>ON: undefined</b> по умолчанию $.on('click.zONas');</li>
           <li><b>F: (d, b, N) => {}</b> своя функция (Сработает при открытии окна)</li>
           <li><b>Fx: d => {}</b> своя функция (Сработает при закрытии окна)</li>
+          <li><b>oF: d => {}</b> своя функция (Сработает после изменения размера браузер окна)</li>
         </ul>
         <u>Доп информация</u>:
         <ul class="ram-V0 all-c8">
@@ -1117,7 +1118,7 @@
     &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
 
     &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
-    &nbsp; &nbsp; &nbsp; }
+    &nbsp; &nbsp; &nbsp; },
     
     &nbsp; &nbsp; &nbsp; oF: d => {//Своя функция (Сработает после изменения размера браузер окна)
     &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
@@ -1191,6 +1192,7 @@
     &lt;body class="temaT">
     </code></div></pre>
     <!-- ••• Презентация КОНЕЦ! ••• -->
+    
     <h4 class="hr-n1 hr-L all-c0" style="margin-bottom: 0"><b>Полезное:</b></h4>
     <div style="--zHidH:5ex" zhid><button zhidb><p><s></s></p></button>
       <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для отображения кода(#cod):</b></h4>
