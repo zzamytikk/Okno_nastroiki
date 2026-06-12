@@ -27,8 +27,11 @@
   <body><div id="M"><div></div></div>
   <header><nav></nav></header>
   <main>
-    <!-- Тестируем -->
-    <style>
+    <!-- Тэстируем: --> 
+    <fieldset class="all-c4" style="margin-top:var(--zHidX, 99px); --zHid: 7ex; " zhid="1">
+      <legend><button zhidb><p><s></s></p><b>Тэстируем</b></button></legend>
+      
+      <style>
       .ubrRam #cod {/* Убераем рамку */
          margin:0;
          border:0;
@@ -37,56 +40,8 @@
       .ubrRam > div:last-child {
         padding: 0;
       }
-    </style>
-    
-    <div style="position:absolute;top:5px;left:6px; borderq: 1px solid red;">
-      <div class="zONas-BR all-c4">
-        <button>i</button><div><div></div></div>
-      </div><br>
-      <div class="zONas-BL all-c4">
-        <button>iiii</button><div><div></div></div>
-      </div><br>
-      <div class="zONas-BR all-c4">
-        <button>zONas-BR</button><div><div></div></div>
-      </div><br>
-      <div class="zONas-BL all-c4">
-        <button>zONas-BL</button><div><div></div></div>
-      </div>
-    </div>
-    <div style="z-index:1; position:absolute;top:40px; left: 50%;transform: translateX(-50%);">
-      <div class="zONas-TL all-c4">
-        <button>zONas-TL</button><div><div></div></div>
-      </div> 
-      <div class="zONas-TR all-c4">
-        <button>zONas-TR</button><div><div></div></div>
-      </div>
-    </div>
-    <div style="position:absolute;top:5px;right:6px; borderf: 1px solid red; text-align: right">
-      <div class="zONas-BL all-c4">
-        <button>i</button><div><div></div></div>
-      </div>
-      <br>
-      <div class="zONas-BR all-c4">
-        <button>zONas-BR</button><div><div></div></div>
-      </div><br>
-      <div class="zONas-BL all-c4">
-        <button>zONas-BL</button><div><div></div></div>
-      </div>
-    </div>
-    
-    <div style="display:none; z-index:1;position:fixed;bottom:41px; left:50%;transform: translateX(-50%);">
-      <div class="zONas-BL all-c4">
-        <button>zONas-BL</button><div><div></div></div>
-      </div> 
-      <div class="zONas-BR all-c4">
-        <button>zONas-BR</button><div><div></div></div>
-      </div>
-    </div>
-    <br>
-    <div style="margin:45px 0"></div>
-    
-    <fieldset class="ubrRam all-c3 v-BG0">
-      <legend>Тестируеи</legend>
+      </style>
+      
       <div class="zONas-TL all-c4">
         <button>TL</button>
         <div><div>
@@ -405,7 +360,7 @@
           </code></div></pre> 
         </div></div>
       </div>
-      
+    
       <div class="zONas-BL all-c4">
         <button>BL</button>
         <div><div>
@@ -610,7 +565,7 @@
           </code></div></pre> 
         </div></div>
       </div>
-      
+    
       <div class="zONas-BL all-c4">
         <button>BLBLBL</button>
         <div><div>
@@ -758,10 +713,9 @@
           </code></div></pre> 
         </div></div>
       </div>
-    </fieldset>
-    <!-- #svoi, fun ajax Загрузка -->
-    <fieldset class="all-c3 v-BG0">
-      <legend>Тестируем</legend>
+      
+      <!-- #svoi, fun ajax Загрузка -->
+      <br><h4 class="hr-n1 all-c7"><b>#svoi, fun ajax Загрузка:</b></h4>
       
       <div class="zONas-TL all-c1">
         <div class="B-i-CR all-c1">
@@ -794,19 +748,60 @@
         <div><button but>.zONasNet Не закрывать окно</button></div>
         <div><div>ок</div></div>
       </div>
+      
+      <!-- position: fixed; Покажем когда zHid открыт-->
+      <div style="display: var(--zHidX2, block)">
+        <div style="position:fixed;top:5px;left:6px; borderq: 1px solid red;">
+          <div class="zONas-BR all-c4">
+            <button>i</button><div><div></div></div>
+          </div><br>
+          <div class="zONas-BL all-c4">
+            <button>iiii</button><div><div></div></div>
+          </div><br>
+          <div class="zONas-BR all-c4">
+            <button>zONas-BR</button><div><div></div></div>
+          </div><br>
+          <div class="zONas-BL all-c4">
+            <button>zONas-BL</button><div><div></div></div>
+          </div>
+        </div>
+        <div style="position:fixed;top:40px; left: 50%;transform: translateX(-50%);">
+          <div class="zONas-TL all-c4">
+            <button>zONas-TL</button><div><div></div></div>
+          </div> 
+          <div class="zONas-TR all-c4">
+            <button>zONas-TR</button><div><div></div></div>
+          </div>
+        </div>
+        <div style="position:fixed;top:5px;right:6px; borderf: 1px solid red; text-align: right">
+          <div class="zONas-BL all-c4">
+            <button>i</button><div><div></div></div>
+          </div>
+          <br>
+          <div class="zONas-BR all-c4">
+            <button>zONas-BR</button><div><div></div></div>
+          </div><br>
+          <div class="zONas-BL all-c4">
+            <button>zONas-BL</button><div><div></div></div>
+          </div>
+        </div>
+      </div>
     </fieldset>
-    
+
     <h4 class="hr-n1 hr-L all-c0"><b>Презентация:</b></h4>
     <!-- ••• Презентация НАЧАЛО: ••• -->
     <link href="/db/publ/zONas/1-0-0/m.css" rel="stylesheet">
     <script src="/db/publ/zONas/1-0-0/m.js" defer></script>
     
-    <div class="ram-V0 ram-V2 gI-inf all-c1"><div>
-      <b>Всплывающее окно (Настройки/Разное)</b> позволяет быстро и удобно настроить определенные параметры.
-      Оно обычно появляется на экране, когда пользователь нажимает на определенную кнопку или выполняет определенные действия.
-      В окне настроек пользователь может изменить различные параметры, такие как язык интерфейса, настройки безопасности, настройки звука и многое другое.
-    </div></div>
-
+    <div class="zHidTxt" style="--zHid:9ex;" zhid>
+      <div class="ram-V0 ram-V2 gI-inf all-c1 zHidgITop"><div><button zhidb><p><s></s></p></button>
+        <span><b>Всплывающее окно (Настройки/Разное)</b> позволяет быстро и удобно настроить определенные параметры.
+        Оно обычно появляется на экране, когда пользователь нажимает на определенную кнопку или выполняет определенные действия.
+        В окне настроек пользователь может изменить различные параметры, такие как язык интерфейса, настройки безопасности, настройки звука и многое другое.</span>
+      </div></div>
+    </div>
+    
+    <!-- Пример: -->
     <fieldset class="all-c1">
       <legend>Пример</legend>
       <style>
@@ -969,6 +964,7 @@
       </ul>
     </div></div>
     
+    <!-- Подключение к сайту: -->
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Подключение к сайту:</b></h4>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;!-- Добавить в &lt;head>..&lt;/head>: -->
@@ -1044,148 +1040,189 @@
       </div>
     </div>
     
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 1:</b></h4>
-    <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-    &lt;div class="zONas-TL all-c4">
-    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-    &nbsp; &lt;div>&lt;div>
-    &nbsp; &nbsp; Ваш текст тут..
-    &nbsp; &lt;/div>&lt;/div>
-    &lt;/div>
+    <!-- Вариант 1: -->
+    <div class="zCodR3 ram-n3 all-c5" style="--zHidH:12ex;" zhid="1">
+      <div class="zCodR3z"><div><button style="float:left" zhidb><p><s></s></p><b>Вариант 1</b></button></div></div>
+      <div class="zCodR3s">
+        <div>
+          <pre id="zCod"><div><div></div><code class="v-BG0">
+          &lt;div class="zONas-TL all-c4">
+          &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+          &nbsp; &lt;div>&lt;div>
+          &nbsp; &nbsp; Ваш текст тут..
+          &nbsp; &lt;/div>&lt;/div>
+          &lt;/div>
+          
+          &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+          &lt;script>
+          &nbsp; document.addEventListener('DOMContentLoaded', () => {
+          &nbsp; &nbsp; //zONas.O.o = 8;//Задаём свой отступ от стенок. (По умолчанию 4)
+          &nbsp; &nbsp; //zONas.$(); поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."
+          &nbsp; &nbsp; zONas.$();//★ Запускаем Всплывающее окно (Настройки/Разное)
+          &nbsp; });
+          &lt;/script>
+          </code></div></pre>
+        </div>
+        <div></div>
+      </div>
+    </div>
     
-    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
-    &lt;script>
-    &nbsp; document.addEventListener('DOMContentLoaded', () => {
-    &nbsp; &nbsp; //zONas.O.o = 8;//Задаём свой отступ от стенок. (По умолчанию 4)
-    &nbsp; &nbsp; //zONas.$(); поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."
-    &nbsp; &nbsp; zONas.$();//★ Запускаем Всплывающее окно (Настройки/Разное)
-    &nbsp; });
-    &lt;/script>
-    </code></div></pre>
+    <!-- Вариант 2: -->
+    <br><p>Своя функция с выводом содержания окна:</p>
+    <div class="zCodR3 ram-n3 all-c5" style="--zHidH:12ex;" zhid="1">
+      <div class="zCodR3z"><div><button style="float:left" zhidb><p><s></s></p><b>Вариант 2</b></button></div></div>
+      <div class="zCodR3s">
+        <div>
+          <pre id="zCod"><div><div></div><code class="v-BG0">
+          &lt;div id="svoi2" class="zONas-TL all-c4">
+          &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+          &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
+          &lt;/div>
+          
+          &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+          &lt;script>
+          &nbsp; document.addEventListener('DOMContentLoaded', () => {
+          &nbsp; &nbsp; //Поиск по &lt;div id="svoi2"
+          &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
+          &nbsp; &nbsp; &nbsp; id: 'svoi2', //Путь до &lt;div id="svoi2" class="zONas-
+          
+          &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
+          &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+          &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
+          &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
+          
+          &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
+          &nbsp; &nbsp; &nbsp; }
+          &nbsp; &nbsp; });
+          &nbsp; });
+          &lt;/script>
+          </code></div></pre>
+        </div>
+        <div></div>
+      </div>
+    </div>
     
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 2</b></h4>
-    <p>Своя функция с выводом содержания окна:</p>
-    <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-    &lt;div id="svoi2" class="zONas-TL all-c4">
-    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-    &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
-    &lt;/div>
+    <!-- Вариант 3: -->
+    <br><p>Своя функция сработает после закрытия окна и изменения размера браузер окна:</p>
+    <div class="zCodR3 ram-n3 all-c5" style="--zHidH:12ex;" zhid="1">
+      <div class="zCodR3z"><div><button style="float:left" zhidb><p><s></s></p><b>Вариант 3</b></button></div></div>
+      <div class="zCodR3s">
+        <div>
+          <pre id="zCod"><div><div></div><code class="v-BG0">
+          &lt;div id="svoi2" class="zONas-TL all-c4">
+          &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+          &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
+          &lt;/div>
+          
+          &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+          &lt;script>
+          &nbsp; document.addEventListener('DOMContentLoaded', () => {
+          &nbsp; &nbsp; //Поиск по &lt;div id="svoi2"
+          &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
+          &nbsp; &nbsp; &nbsp; id: 'svoi2', //Путь до &lt;div id="svoi2" class="zONas-
+          
+          &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
+          &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+          &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
+          &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
+          
+          &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
+          &nbsp; &nbsp; &nbsp; &nbsp; $('#over').css('overflow', 'unset');//Добавим видимость
+          &nbsp; &nbsp; &nbsp; },
+          
+          &nbsp; &nbsp; &nbsp; Fx: d => {//Своя функция (Сработает при закрытии окна)
+          &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+      
+          &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
+          &nbsp; &nbsp; &nbsp; },
+          
+          &nbsp; &nbsp; &nbsp; oF: d => {//Своя функция (Сработает после изменения размера браузер окна)
+          &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
+      
+          &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
+          &nbsp; &nbsp; &nbsp; }
+          &nbsp; &nbsp; });
+          &nbsp; });
+          &lt;/script>
+          </code></div></pre>
+        </div>
+        <div></div>
+      </div>
+    </div>
     
-    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
-    &lt;script>
-    &nbsp; document.addEventListener('DOMContentLoaded', () => {
-    &nbsp; &nbsp; //Поиск по &lt;div id="svoi2"
-    &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
-    &nbsp; &nbsp; &nbsp; id: 'svoi2', //Путь до &lt;div id="svoi2" class="zONas-
+    <!-- Вариант 4: -->
+    <br><p>Обработка $.ajax(); + смена обработки событий keyup, input,..:</p>
+    <div class="zCodR3 ram-n3 all-c5" style="--zHidH:12ex;" zhid="1">
+      <div class="zCodR3z"><div><button style="float:left" zhidb><p><s></s></p><b>Вариант 4</b></button></div></div>
+      <div class="zCodR3s">
+        <div>
+          <pre id="zCod"><div><div></div><code class="v-BG0">
+          &lt;div id="svoi3" class="zONas-TL all-c4">
+          &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+          &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
+          &lt;/div>
+          
+          &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+          &lt;script>
+          &nbsp; document.addEventListener('DOMContentLoaded', () => {
+          &nbsp; &nbsp; //Поиск по &lt;div id="svoi3"
+          &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
+          &nbsp; &nbsp; &nbsp; id: 'svoi3', //Путь до &lt;div id="svoi3" class="zONas-
+          &nbsp; &nbsp; &nbsp; ON: 'keyup', //Сменим обработку событий $.on('keyup.zONas');
+          &nbsp; &nbsp; &nbsp; //ON: undefined, //По умолчанию $.on('click.zONas');
+          
+          &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
+          &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi3" class="zONas-
+          &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
+          &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
+          
+          &nbsp; &nbsp; &nbsp; &nbsp; $.ajax({
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; url: '/testAjax.html', //Куда отправить запрос.
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataType: 'html', //Тип данных в ответе (xml, json, script, html).
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; success: function(htm){ //Функция которая будет выполнена после успешного запроса.
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Тут можно обработать до вывода: htm = htm.replace(/удали меня/,'');
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, htm);//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+          &nbsp; &nbsp; &nbsp; &nbsp; });
+          &nbsp; &nbsp; &nbsp; }
+          &nbsp; &nbsp; });
+          &nbsp; });
+          &lt;/script>
+          </code></div></pre>
+        </div>
+        <div></div>
+      </div>
+    </div>
     
-    &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
-    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
-    &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
-    &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
+    <!-- Вариант 5: -->
+    <br><p><span class="cod-scb">class</span>="<u class="u-n0 all-c1">zONasNet</u>" установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button):</p>
+    <div class="zCodR3 ram-n3 all-c5" style="--zHidH:12ex;" zhid="1">
+      <div class="zCodR3z"><div><button style="float:left" zhidb><p><s></s></p><b>Вариант 5</b></button></div></div>
+      <div class="zCodR3s">
+        <div>
+          <pre id="zCod"><div><div></div><code class="v-BG0">
+          &lt;div class="zONas-TL zONasNet all-c4">
+          &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
+          &nbsp; &lt;div>&lt;div>
+          &nbsp; &nbsp; Ваш текст тут..
+          &nbsp; &lt;/div>&lt;/div>
+          &lt;/div>
+          
+          &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
+          &lt;script>
+          &nbsp; document.addEventListener('DOMContentLoaded', () => {
+          &nbsp; &nbsp; //zONas.O.o = 8;//Задаём свой отступ от стенок. (По умолчанию 4)
+          &nbsp; &nbsp; //zONas.$(); поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."
+          &nbsp; &nbsp; zONas.$();//★ Запускаем Всплывающее окно (Настройки/Разное)
+          &nbsp; });
+          &lt;/script>
+          </code></div></pre>
+        </div>
+        <div></div>
+      </div>
+    </div>
     
-    &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
-    &nbsp; &nbsp; &nbsp; }
-    &nbsp; &nbsp; });
-    &nbsp; });
-    &lt;/script>
-    </code></div></pre>
-    
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 3</b></h4>
-    <p>Своя функция сработает после закрытия окна и своя функция сработает после изменения размера браузер окна:</p>
-    <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-    &lt;div id="svoi2" class="zONas-TL all-c4">
-    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-    &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
-    &lt;/div>
-    
-    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
-    &lt;script>
-    &nbsp; document.addEventListener('DOMContentLoaded', () => {
-    &nbsp; &nbsp; //Поиск по &lt;div id="svoi2"
-    &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
-    &nbsp; &nbsp; &nbsp; id: 'svoi2', //Путь до &lt;div id="svoi2" class="zONas-
-    
-    &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
-    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
-    &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
-    &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
-    
-    &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, 'Тут ваш <b>текст</b>');//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
-    &nbsp; &nbsp; &nbsp; &nbsp; $('#over').css('overflow', 'unset');//Добавим видимость
-    &nbsp; &nbsp; &nbsp; },
-    
-    &nbsp; &nbsp; &nbsp; Fx: d => {//Своя функция (Сработает при закрытии окна)
-    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
-
-    &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
-    &nbsp; &nbsp; &nbsp; },
-    
-    &nbsp; &nbsp; &nbsp; oF: d => {//Своя функция (Сработает после изменения размера браузер окна)
-    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi2" class="zONas-
-
-    &nbsp; &nbsp; &nbsp; &nbsp; $('#over').removeAttr('style');//Вернём
-    &nbsp; &nbsp; &nbsp; }
-    &nbsp; &nbsp; });
-    &nbsp; });
-    &lt;/script>
-    </code></div></pre>
-    
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 4</b></h4>
-    <p>Обработка $.ajax(); + смена обработки событий keyup, input,..:</p>
-    <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-    &lt;div id="svoi3" class="zONas-TL all-c4">
-    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-    &nbsp; &lt;div>&lt;div>&lt;/div>&lt;/div>
-    &lt;/div>
-    
-    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
-    &lt;script>
-    &nbsp; document.addEventListener('DOMContentLoaded', () => {
-    &nbsp; &nbsp; //Поиск по &lt;div id="svoi3"
-    &nbsp; &nbsp; zONas.$({//★ Запускаем индивидуально для подгруза
-    &nbsp; &nbsp; &nbsp; id: 'svoi3', //Путь до &lt;div id="svoi3" class="zONas-
-    &nbsp; &nbsp; &nbsp; ON: 'keyup', //Сменим обработку событий $.on('keyup.zONas');
-    &nbsp; &nbsp; &nbsp; //ON: undefined, //По умолчанию $.on('click.zONas');
-    
-    &nbsp; &nbsp; &nbsp; F: (d, b, N) => {//Своя функция (Сработает при открытии окна)
-    &nbsp; &nbsp; &nbsp; &nbsp; //d = $() //&lt;div id="svoi3" class="zONas-
-    &nbsp; &nbsp; &nbsp; &nbsp; //b = $() //&lt;button
-    &nbsp; &nbsp; &nbsp; &nbsp; //N = $() //Путь до содержания окна
-    
-    &nbsp; &nbsp; &nbsp; &nbsp; $.ajax({
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; url: '/testAjax.html', //Куда отправить запрос.
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataType: 'html', //Тип данных в ответе (xml, json, script, html).
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; success: function(htm){ //Функция которая будет выполнена после успешного запроса.
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Тут можно обработать до вывода: htm = htm.replace(/удали меня/,'');
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; zONas.L(d, b, N, htm);//Выводим наш текст HTML. //htm=false;//Остановит вывод окна!
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
-    &nbsp; &nbsp; &nbsp; &nbsp; });
-    &nbsp; &nbsp; &nbsp; }
-    &nbsp; &nbsp; });
-    &nbsp; });
-    &lt;/script>
-    </code></div></pre>
-
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Вариант 5</b></h4>
-    <p><span class="cod-scb">class</span>="<u class="u-n0 all-c1">zONasNet</u>" установит запрет на закрытие окна, при открытии другова. (Закрывается только при нажатии на &lt;button):</p>
-    <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-    &lt;div class="zONas-TL zONasNet all-c4">
-    &nbsp; &lt;button>button&lt;/button>&lt;!-- Ваша кнопка (Открыть/Закрыть Всплывающее окно (Настройки/Разное)) -->
-    &nbsp; &lt;div>&lt;div>
-    &nbsp; &nbsp; Ваш текст тут..
-    &nbsp; &lt;/div>&lt;/div>
-    &lt;/div>
-    
-    &lt;!-- Добавить в конец &lt;body>..&lt;/body>: -->
-    &lt;script>
-    &nbsp; document.addEventListener('DOMContentLoaded', () => {
-    &nbsp; &nbsp; //zONas.O.o = 8;//Задаём свой отступ от стенок. (По умолчанию 4)
-    &nbsp; &nbsp; //zONas.$(); поиск всех &lt;div class="zONas-, если не установлен &lt;div id=".."
-    &nbsp; &nbsp; zONas.$();//★ Запускаем Всплывающее окно (Настройки/Разное)
-    &nbsp; });
-    &lt;/script>
-    </code></div></pre>
-
+    <!-- Для тёмного сайта: -->
     <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для тёмного сайта:</b></h4>
     <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
     &lt;!-- Необходимо добавить в body class="temaT" -->
@@ -1193,42 +1230,51 @@
     </code></div></pre>
     <!-- ••• Презентация КОНЕЦ! ••• -->
     
-    <h4 class="hr-n1 hr-L all-c0" style="margin-bottom: 0"><b>Полезное:</b></h4>
-    <div style="--zHidH:5ex" zhid><button zhidb><p><s></s></p></button>
-      <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для отображения кода(#cod):</b></h4>
-      <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-      &lt;style>
-      &nbsp; #ubrRam #cod {/* Убераем рамку */
-      &nbsp; &nbsp; margin:0;
-      &nbsp; &nbsp; border:0;
-      &nbsp; &nbsp; box-shadow:unset;
-      &nbsp; }
-      &nbsp; #ubrRam [class*="zONas-"] > div:last-child {
-      &nbsp; &nbsp; padding: 0
-      &nbsp; }
-      &lt;/style>
+    <!-- Полезное: -->
+    <fieldset class="all-c4" style="--zHid: 7ex; " zhid="1">
+      <legend><button zhidb><p><s></s></p><b>Полезное</b></button></legend>
       
-      &lt;div id="ubrRam">&lt;!-- Уберём у всех #cod margin,padding -->
-      &nbsp; &lt;div class="zONas-BR all-c4">
-      &nbsp; &nbsp; &lt;button>ok&lt;/button>
-      &nbsp; &nbsp; &lt;div>&lt;div>
-      &nbsp; &nbsp; &nbsp; &lt;pre id="cod" class="ram-n0 all-c5">&lt;code class="v-BG0">
-      &nbsp; &nbsp; &nbsp; &lt;div>Пример 1&lt;/div>
-      &nbsp; &nbsp; &nbsp; &lt;/code>&lt;/pre> 
-      &nbsp; &nbsp; &lt;/div>&lt;/div>
-      &nbsp; &lt;/div>
-      
-      &nbsp; &lt;div class="zONas-BR all-c4">
-      &nbsp; &nbsp; &lt;button>ok&lt;/button>
-      &nbsp; &nbsp; &lt;div>&lt;div>
-      &nbsp; &nbsp; &nbsp; &lt;pre id="cod" class="ram-n0 all-c5">&lt;code class="v-BG0">
-      &nbsp; &nbsp; &nbsp; &lt;div>Пример 2&lt;/div>
-      &nbsp; &nbsp; &nbsp; &lt;/code>&lt;/pre>
-      &nbsp; &nbsp; &lt;/div>&lt;/div>
-      &nbsp; &lt;/div>
-      &lt;/div>
-      </code></div></pre>
-    </div>
+      <div class="zCodR3 zHid2 ram-n3 all-c4" style="--zHidH:12ex;" zhid="1">
+        <div class="zCodR3z"><div><button style="float:left" zhidb="2"><p><s></s></p><b>Для отображения кода(#cod)</b></button></div></div>
+        <div class="zCodR3s">
+          <div>
+            <pre id="zCod"><div><div></div><code class="v-BG0">
+            &lt;style>
+            &nbsp; #ubrRam #cod {/* Убераем рамку */
+            &nbsp; &nbsp; margin:0;
+            &nbsp; &nbsp; border:0;
+            &nbsp; &nbsp; box-shadow:unset;
+            &nbsp; }
+            &nbsp; #ubrRam [class*="zONas-"] > div:last-child {
+            &nbsp; &nbsp; padding: 0
+            &nbsp; }
+            &lt;/style>
+            
+            &lt;div id="ubrRam">&lt;!-- Уберём у всех #cod margin,padding -->
+            &nbsp; &lt;div class="zONas-BR all-c4">
+            &nbsp; &nbsp; &lt;button>ok&lt;/button>
+            &nbsp; &nbsp; &lt;div>&lt;div>
+            &nbsp; &nbsp; &nbsp; &lt;pre id="cod" class="ram-n0 all-c5">&lt;code class="v-BG0">
+            &nbsp; &nbsp; &nbsp; &lt;div>Пример 1&lt;/div>
+            &nbsp; &nbsp; &nbsp; &lt;/code>&lt;/pre> 
+            &nbsp; &nbsp; &lt;/div>&lt;/div>
+            &nbsp; &lt;/div>
+            
+            &nbsp; &lt;div class="zONas-BR all-c4">
+            &nbsp; &nbsp; &lt;button>ok&lt;/button>
+            &nbsp; &nbsp; &lt;div>&lt;div>
+            &nbsp; &nbsp; &nbsp; &lt;pre id="cod" class="ram-n0 all-c5">&lt;code class="v-BG0">
+            &nbsp; &nbsp; &nbsp; &lt;div>Пример 2&lt;/div>
+            &nbsp; &nbsp; &nbsp; &lt;/code>&lt;/pre>
+            &nbsp; &nbsp; &lt;/div>&lt;/div>
+            &nbsp; &lt;/div>
+            &lt;/div>
+            </code></div></pre>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </fieldset>
   </main>
 
   <script>
