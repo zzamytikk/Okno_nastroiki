@@ -4,52 +4,41 @@
 */
 
 /* ✦ --all-.. .all-c.. Цвета ✦ *//* #region */
-/*  • --all-C            = color title, border, backgraund, box-shadow inset
-    • --all-Ct           = текст послабей для текста
-
-    • --all-bg-93        = backgraund (Прозрацный)
-
-    • --all-br:          = border
-
-    • --all-b-sh         = box-shadow
-    • --all-t-sh         = text-shadow
-*/
-[class*="all-c0"] {/*0~> */
-    --all-C: #f44;
+[class*="all-c0"] {
+  --all-C: #f44;
 }
-[class*="all-c1"] {/*1~> */
-    --all-C: #0b0;
+[class*="all-c1"] {
+  --all-C: #0b0;
 }
-[class*="all-c2"] {/*2~> */
-    --all-C: #f90;
+[class*="all-c2"] {
+  --all-C: #f90;
 }
-[class*="all-c3"] {/*3~> */
-    --all-C: #dd0;
+[class*="all-c3"] {
+  --all-C: #dd0;
 }
-[class*="all-c4"] {/*4~> */
-    --all-C: #08f;
+[class*="all-c4"] {
+  --all-C: #08f;
 }
-[class*="all-c5"] {/*5~> */
-    --all-C: #999;
+[class*="all-c5"] {
+  --all-C: #999;
 }
-[class*="all-c6"] {/*6~> */
-    --all-C: #f0f;
+[class*="all-c6"] {
+  --all-C: #f0f;
 }
-[class*="all-c7"] {/*7~> */
-    --all-C: #0bb;
+[class*="all-c7"] {
+  --all-C: #0bb;
 }
-[class*="all-c8"] {/*8~> Белый */
-  --all-C: #333;
-}
-.temaT .all-c8[class*="zONas-"] {/* 9 Чёрный. Для белого фона */
-  --all-C: #ccc;
+[class*="all-c8"] {/* Чёрный - Для белого фона/Белый - Для тёмного фона */
+  --all-C: light-dark(#333, #ccc);
 }
 /* ✦ --all- .all-c.. Цвета ✦ *//* #endregion */
 
-.temaT {
-  --bg: #012;  /* background Фон сайта */
-  --Ct: #ccc;  /* текст */
+/* ✦ body ✦ *//* #region */
+body {/* Тема сайта: */
+  --bg: light-dark(#fff, #012);/* background: Фон сайта */
+  --Ct: light-dark(#000, #ccc);/* color:      Основной цвет текста */
 }
+/* ✦ body ✦ *//* #endregion */
 
 [class*="zONas-"], [class*="zONas-"] > *:last-child, [class*="zONas-"] > *:last-child > * {
   position: relative;

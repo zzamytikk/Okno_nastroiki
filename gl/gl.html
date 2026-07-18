@@ -25,13 +25,15 @@
   <script src="/zONas/1-0-0/ok.js" defer></script>
   </head>
   <body><div id="M"><div></div></div>
-  <header><nav></nav></header>
   <main>
     <!-- Тэстируем: --> 
-    <fieldset class="all-c4" style="margin-top:var(--zHidX, 99px); --zHid: 7ex; " zhid="1">
+    <fieldset id="zOnaTtest" class="all-c4" style="margin-top:var(--zHidX, 99px); --zHid: 7ex; " zhid="1">
       <legend><button zhidb><p><s></s></p><b>Тэстируем</b></button></legend>
       
       <style>
+      #zOnaTtest button {
+        margin: 1px;
+      }
       .ubrRam #cod {/* Убераем рамку */
          margin:0;
          border:0;
@@ -1222,12 +1224,6 @@
       </div>
     </div>
     
-    <!-- Для тёмного сайта: -->
-    <h4 class="hr-n1 hr-L" style="--hr-lin: var(--Ct)"><b>Для тёмного сайта:</b></h4>
-    <pre id="zCod" class="ram-n0 all-c5" data-ram-zag="HTML"><div><div></div><code class="v-BG0">
-    &lt;!-- Необходимо добавить в body class="temaT" -->
-    &lt;body class="temaT">
-    </code></div></pre>
     <!-- ••• Презентация КОНЕЦ! ••• -->
     
     <!-- Полезное: -->
@@ -1285,8 +1281,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       gl.$();//Запуск инструментов (bg,resize,menu...)
-      //z.z.Start.$();//Запуск: Скрыть/Показать (hidden), Подсветка кодов, 
-      zHid.$();//Скрыть/Показать
+      z.z.Start.$();//Запуск: Скрыть/Показать (hidden), Подсветка кодов, 
+      //zHid.$();//Скрыть/Показать
       zCod.$();//Подсветка кода
       
       zONas.$();
