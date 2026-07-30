@@ -4,31 +4,31 @@
 */
 
 /* ✦ --all-.. .all-c.. Цвета ✦ *//* #region */
-[class*="all-c0"] {
+.all-c0 {
   --all-C: #f44;
 }
-[class*="all-c1"] {
+.all-c1 {
   --all-C: #0b0;
 }
-[class*="all-c2"] {
+.all-c2 {
   --all-C: #f90;
 }
-[class*="all-c3"] {
+.all-c3 {
   --all-C: #dd0;
 }
-[class*="all-c4"] {
+.all-c4 {
   --all-C: #08f;
 }
-[class*="all-c5"] {
+.all-c5 {
   --all-C: #999;
 }
-[class*="all-c6"] {
+.all-c6 {
   --all-C: #f0f;
 }
-[class*="all-c7"] {
+.all-c7 {
   --all-C: #0bb;
 }
-[class*="all-c8"] {/* Чёрный - Для белого фона/Белый - Для тёмного фона */
+.all-c8 {/* Чёрный - Для белого фона/Белый - Для тёмного фона */
   --all-C: light-dark(#333, #ccc);
 }
 /* ✦ --all- .all-c.. Цвета ✦ *//* #endregion */
