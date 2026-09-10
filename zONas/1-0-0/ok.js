@@ -17,7 +17,8 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         if(!q.ON) {
           q.ON = 'click'
         }
-        id.attr('onzpro', '').find(O.iB).each((i, e) => {
+        id.attr('onzpro', '')//Защита от повторной установки .on
+          .find(O.iB).each((i, e) => {
           if (typeof q.Fx == 'function' || typeof q.oF == 'function') { //Пользовательская function
             O.Fx.push([q.Fx, q.oF]); delete q.Fx; delete q.oF;
             $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
@@ -348,29 +349,5 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       });
       zONas.db.observe($('html')[0], {}); //Передаем элемент и настройки в наблюдатель
     }
-  },
-  /* proNS(//Проверка namespace
-      e,//event
-      'cod',//Какой ключь(namespace) ищим
-      'input'//$.on('input.cod'); undefined = click
-    );//return true = Ненашли ключ, false = нашли!
-  */
-  //Ищим .cod, установленный: `$.on('click.cod', () => {})`
-  proNS: (e, P, c = 'click') => {
-    let d = $._data($(e)[0], 'events')?.[c];
-
-    //console.debug('Нашли запись: if(' + (d && d[0].namespace) + ').', d);
-
-    if (d && d[0].namespace) { //Нашли запись
-      return !d.filter(v => { //Проверим все
-        //console.debug('if(' + v['namespace'] + '==' + P + ') =>', v['namespace'] == P);
-
-        if (v['namespace'] == P) { //Нашли запись
-          return true //Выбераем совпадение
-        }
-      })[0]; //[0] Проверка первого совпадения
-    }
-
-    return true; //Пусто
   }
 };
