@@ -17,35 +17,26 @@ var zONas = { //Всплывающее окно `Настройки/Разное
         if(!q.ON) {
           q.ON = 'click'
         }
-        id.each((i, e) => {
-          if(O.proNS(//Проверка namespace
-              e, //event
-              'zONas',//Какой ключь(namespace) ищим
-              q.ON //$.on('input.cod'); undefined = click
-            )//return true = Ненашли ключ, false = нашли!
-          ){
-            if (typeof q.Fx == 'function' || typeof q.oF == 'function') { //Пользовательская function
-              O.Fx.push([q.Fx, q.oF]); delete q.Fx; delete q.oF;
-              $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
-              //console.debug('Добавили функцию O.Fx('+(O.Fx.length-1)+'): ', O.Fx);
-            }
-            //console.debug(q.ON, q.ON.replace(new RegExp('[a-z]+', 'gi'),'$&.zONas')); 
-            $(e).on(q.ON.replace(new RegExp('[a-z]+', 'gi'), '$&.zONas'), e => {
-              if ($(e.currentTarget)[0].nodeName == 'A') { e.preventDefault(); } //отменить выполнение действия для <a
-              if (O.F) {return} //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
-              //console.debug('click.zONas'); 
-              O.C($(e.currentTarget), q);
-            });
-          } else {
-            //console.debug('Была попытка повторного запуска скрипта zONas.$(click.zONas);', e);
+        id.attr('onzpro', '').find(O.iB).each((i, e) => {
+          if (typeof q.Fx == 'function' || typeof q.oF == 'function') { //Пользовательская function
+            O.Fx.push([q.Fx, q.oF]); delete q.Fx; delete q.oF;
+            $(e).closest('[class*="zONas-"]').attr('data-zonas', (O.Fx.length-1));//Добавим id До фукции
+            //console.debug('Добавили функцию O.Fx('+(O.Fx.length-1)+'): ', O.Fx);
           }
+          //console.debug(q.ON, q.ON.replace(new RegExp('[a-z]+', 'gi'),'$&.zONas')); 
+          $(e).on(q.ON.replace(new RegExp('[a-z]+', 'gi'), '$&.zONas'), e => {
+            if ($(e.currentTarget)[0].nodeName == 'A') { e.preventDefault(); } //отменить выполнение действия для <a
+            if (O.F) {return} //console.debug('Идёт ожидание ответа от function, загрузка другова окна');
+            //console.debug('click.zONas'); 
+            O.C($(e.currentTarget), q);
+          });
         });
       };
 
     on( //Вешаем click (Путь до <button):
       q.id //По id="svoi"
-        ? $('body #' + q.id.replace('#', '')).find(O.iB)
-        : $('[class*="zONas-"]').not('[id]').find(O.iB) //Поиск всех
+        ? $('body #' + q.id.replace('#', '')+':not([onzpro])')
+        : $('[class*="zONas-"]:not([onzpro], [id])') //Поиск всех
     )
   },
   /* zONas.C(//Обработка
