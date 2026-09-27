@@ -170,13 +170,13 @@ var zONas = { //Всплывающее окно `Настройки/Разное
       //S[6] - T=Top/B=Bottom, S[7] - L=Left/R=Right
       S = new RegExp('zONas-[A-Z]+').exec(c)[0],
       //От кнопки до окна:
-      sL = +n.css('--nas-LR').replace(new RegExp('[a-z]+'),'');
+      sL = +n.css('--nas-LR').replace(new RegExp('[a-z]+'),''),
       sT = 9,//в css расстояние анимации
       
       //Окно: //Координаты left|top относительно окна + прокрутка
       L = S[7] == 'R'
         ? KL + sL//До кнопки + От кнопки до окна
-        : (KL + KW + (sL < 0 ? Math.abs(sL) : sL - (sL * 2))) - (W - O);//(До кнопки + Размер кнопки + От кнопки до окна) - (Размер окна - Отступ от стенок)
+        : (KL + KW + (sL < 0 ? Math.abs(sL) : sL - (sL * 2))) - (W - O),//(До кнопки + Размер кнопки + От кнопки до окна) - (Размер окна - Отступ от стенок)
       T = S[6] == 'T'
         ? KT - (H - O) - sT - +n.css('border-top-width').replace(new RegExp('[a-z]+'),'')//До кнопки - (Размер окна - Отступ от стенок) - От кнопки до окна - border-top
         : KT + KH + sT + +n.css('border-bottom-width').replace(new RegExp('[a-z]+'),''),//До кнопки + Размер кнопки + От кнопки до окна + border-bottom
